@@ -1,0 +1,213 @@
+*{
+	padding:0; margin:0;
+	font-family: tahoma, verdana, sans-serif;
+	font-size: 11px; 
+}
+   body { 
+
+   }
+/* begin base conteiner's */
+.main {
+	position: relative;
+	background: left center top;
+	width:1232px;
+	margin:0 auto;
+}
+
+.main .conteiner{
+	position: absolute;
+	width:1232px;
+}
+
+.header{
+	height : 50px;
+    background-image: url(/images/BarColor.png); /* Путь к фоновому рисунку */
+    background-position: left top bottom; /* Положение фона */
+    background-repeat: repeat-x; /* Повторяем фон по горизонтали */
+}
+
+.conteiner .left{
+	position: absolute;
+	width: 170px;
+}
+
+.conteiner .right{
+	position: relative;
+	width: 1061px;
+	background-color: #fff;
+	float: right;
+}
+/* end base conteiner's */
+
+/* begin head */
+h1{
+	position: absolute;
+	margin: 12px 0 0 50px;
+	font-size: 14px; 
+}
+
+.img_favourite{
+	width : 15px;
+	height : 15px;
+}
+
+.passe-partout-logo_rb {
+    padding: 1px; 				/* Ширина паспарту */
+    background: #f0f0f0; 		/* Цвет фона  паспарту */
+    border: 1px solid #666; 	/* Параметры рамки */ 
+	width: 40px; height: 40px;
+	margin: 4px 4px 4px 0px;
+	border-radius: 4px; 
+	moz-border-radius: 4px; 
+	webkit-border-radius: 4px;
+	margin-left: 20px;
+}
+/* end head */
+
+/* begin left */
+		/* info */
+.conteiner .left .infobar{
+	border: 1px solid #f1f1f1; 	/* Параметры рамки */ 
+	border-radius: 0 0 0 8px; 
+	moz-border-radius: 0 0 0 8px; 
+	webkit-border-radius: 0 0 0 8px; 
+}
+
+.conteiner .left .infobar select{
+	width:	95%;
+}
+
+.conteiner .left .infobar .icomin{
+	width:	60px;
+	height: 20px;
+	float: right;
+    /* margin: 60px 20px 15px 5px; */
+	text-align: center;
+	padding-right: 10px;
+	padding-top: 42px;
+}
+
+.conteiner .left .infobar .icomin #favourite{
+	
+	top: 10px;
+}
+
+.conteiner .left .infobar .passe-partout {
+    background: #f0f0f0; 		/* Цвет фона  паспарту */    
+	width: 90px; height: 90px;
+	margin: 5px 0px 5px 5px;
+	border-radius: 4px; 
+	moz-border-radius: 4px; 
+	webkit-border-radius: 4px;
+}
+
+.conteiner .left .infobar .subway{
+	text-align: left;
+	margin-top: 2px;
+	padding: 5px 5px 5px 15px;
+}
+			/* menu */
+.conteiner .left ul{
+	padding: 20px 15px 15px 5px;
+}
+.conteiner .left ul.menu{
+	list-style: none;				/* удаляет маркер */
+	/* border-top: 1px solid #000;		 линия сверху */
+}
+.conteiner .left ul.menu li {
+	width: 120px;
+	/* border-bottom: 1px solid #666;  кнопки */
+}
+
+ul.menu a, ul.menu a:visited {
+	padding: 5px 5px 5px 15px;	/* группировка */
+	display: block;
+	width: 140px;
+	text-decoration: none;
+	background: #fff;
+	color: #6da3d4;
+}
+
+ul.menu a:hover, ul.menu a:focus { 
+	background: #f1f1f1;	/* изменяет цвет текста и фона при навигации */
+	color: #6da3d4;
+}
+
+ul.menu a:active{
+	font-size: 15px; /* при клике */
+}
+/* end left */
+
+/* begin right */
+.conteiner .right{
+	border: 1px solid #e3eaf1;
+}
+
+.conteiner .right .canvas_text{
+	width: 18%;
+	height: 100%;
+	float: left;
+}
+
+
+.conteiner .right .canvas_left{
+	width: 41%;
+	/* background: #c5c2c1; */
+	height: 100%;
+	float: left;
+	margin-left: 0px;
+}
+
+.conteiner .right .canvas_right{
+	width: 41%;
+	background: #e3eaf1;
+	height: 100%;
+	float: left;
+}
+
+.conteiner .right .canvas_mid{
+	width: 82%;
+	/* background: #c5c2c1; */
+	height: 100%;
+	float: left;
+}
+
+.conteiner .right .canvas_note{
+	width: 1061px;
+	height: 50px;
+}
+
+.conteiner .right .name_page{
+	border: 1px solid #666;
+	text-align: center;
+	height: 20px;	
+}
+
+.conteiner .right .language_selection{
+	text-align: left;
+	height: 32px;
+	width: 1061px;
+}
+
+.conteiner .right   .title{
+	text-align: left;
+	height: 20px;
+	/* background: #fffabd; */
+}
+.conteiner .right .canvas_note_small{
+	height: 32px;
+}
+.conteiner .right .canvas_note_big{
+	height: 150px;
+}
+
+.conteiner .right .canvas_note_mid{
+	height: 100px;
+}
+
+.conteiner .right .canvas_note_veryBid{
+	height: 350px;
+}
+
+/* end right */		
+		

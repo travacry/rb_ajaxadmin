@@ -1,0 +1,110 @@
+﻿<!Doctype HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+	<link href="style.css" rel="stylesheet" type="text/css" />
+
+	<title>Стилизация элементов форм, с помощью CSS и jQuery - Howtomake</title>
+</head>
+
+<body>
+<header id="header">
+	<h1><a href="http://www.howtomake.com.ua/"><span class="how">How</span><span class="to">To</span><span class="make">Make</span></a> <span class="demo">&rarr; demo</span></h1>
+	<a class="back" href="http://www.howtomake.com.ua/2012/stilizaciya-vsex-elementov-form-s-pomoshhyu-css-i-jquery.html">&raquo; back to article</a>
+</header>
+
+<div id="main">
+	<h1>Стилизация элементов форм, с помощью CSS и jQuery</h1>
+
+	<form action="#" method="post" class="customForm">
+	
+		<h2>Input:</h2>
+		<div class="input">
+			<input type="text" id="text" name="text" />
+		</div>
+		
+		<h2>Текстовое поле:</h2>
+		<div>
+			<textarea id="textarea"></textarea>
+		</div>
+
+		<h2>Select:</h2>			
+		<div class="select">
+			<a href="#" class="slct">Выберите Ваше лучшее качество:</a>
+			<ul class="drop">
+				<li>Красивый(ая)</li>
+				<li>Умный(ая)</li>
+				<li>Коммуникабульный(ая)</li>
+				<li>Скромный(ая)</li>
+			</ul>
+			<input type="hidden" id="select" />
+		</div>		
+		
+		<h2>Radio Button:</h2>
+		Выберите Ваше лучшее качество:
+		<div class="radioblock">
+			<div class="radio">Красивый(ая)</div>
+			<div class="radio">Умный(ая)</div>
+			<div class="radio">Коммуникабульный(ая)</div>
+			<div class="radio">Скромный(ая)</div>
+			<div class="clear"></div>
+			
+			<input type="hidden" id="radion" />
+		</div>
+
+		<h2>Checkbox:</h2>
+		Выберите, с какими языками программирования Вам доводилось сталкиваться в веб-дизайне:
+		<div class="checkboxes">
+			<div class="check">
+				jQuery
+				<input type="checkbox" value="jQuery" />
+			</div>
+			<div class="check">
+				HTML
+				<input type="checkbox" value="HTML" />
+			</div>
+			<div class="check">
+				CSS
+				<input type="checkbox" value="CSS" />
+			</div>
+			<div class="check">
+				PHP
+				<input type="checkbox" value="PHP" />
+			</div>
+			<div class="check">
+				MySql
+				<input type="checkbox" value="MySql" />
+			</div>
+		</div>
+		
+		<div class="fileload">
+			<h2>Загрузка файла:</h2>
+			<div class="file-load-block">
+				<input type="file" value="" id="file" />
+				<div class="fileLoad">
+					<input type="text" value="Select file" />
+					<button>Select file</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="reset-form">
+			<h2>Сбрасываем поля формы</h2>
+			<button>Сброс</button>
+		</div>
+		
+		<div class="sendmail">
+			<h2>Отправляем форму:</h2>
+			<button type="submit">Отправить</button>
+		</div>
+
+	</form>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="script.js" type="text/javascript"></script>
+
+</body>
+</html>
