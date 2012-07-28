@@ -186,7 +186,7 @@ $(document).ready(function(){
 			self.list_address_name = {};
 			self.list_favourite_count = {};
 			self.list_address_rating = {};
-			self.list_address_count_clients = {};
+			self.rating_count = {};
 			self.list_address_count_review = {};
 		
 			$(".note_address").html("<br><br>");
@@ -209,14 +209,23 @@ $(document).ready(function(){
 							self.list_address_id["" + next] = data.response[next].id;
 							//избранное
 							self.list_favourite_count["" + next] = data.response[next].estimate.favourite_count;
-							//рейтинг
-							self.list_address_rating["" + next] = data.response[next].estimate.rating[0]; //почему 5 массивов ?
-							//поситители
-							self.list_address_count_clients["" + next] = "0???"; 
-							//кол-во отзывов
-							self.list_address_count_review["" + next] = data.response[next].estimate.review_count[0];//опять массив 5 эл.
-
 							console.dir(data.response[next]);
+							//рейтинг
+							if (typeof(data.response[next].estimate.rating[4]) != "undefined")
+								self.list_address_rating["" + next] = data.response[next].estimate.rating[4]; //почему 5 массивов ?
+							else 
+								self.list_address_rating["" + next] = "0";
+							//кол-во поситителей голосующих за текущий рейтинг
+							if (typeof(data.response[next].estimate.rating_count[4]) != "undefined")
+								self.rating_count["" + next] = data.response[next].estimate.rating_count[4];
+							else
+								self.rating_count["" + next] = "0";
+							//кол-во отзывов
+							if (typeof(data.response[next].estimate.review_count[4]) != "undefined")
+								self.list_address_count_review["" + next] = data.response[next].estimate.review_count[4];//опять массив 5 эл.
+							else
+								self.list_address_count_review["" + next] = "0";
+							
 							//self.list_address_likes["" + next];
 							self.list_address_name["" + next] = data.response[next].address.street[self.language];
 							//адреса
@@ -238,7 +247,7 @@ $(document).ready(function(){
 										self.slected_id_address = self.list_address_id[next];
 										self.slected_favourite_count = self.list_favourite_count[next];
 										self.address_rating = self.list_address_rating[next];
-										self.address_count_clients = self.list_address_count_clients[next];
+										self.rating_count = self.rating_count[next];
 										self.address_count_review = self.list_address_count_review[next];
 										
 									}
@@ -247,14 +256,17 @@ $(document).ready(function(){
 								$("#favourite").text(self.slected_favourite_count);
 								$("#address_subway").text("Метро: " + name_address);
 								$("#address_rating").text("Рейтинг: " + self.address_rating);
-								$("#address_count_clients").text("Посетители: " + self.address_count_clients);
+								$("#rating_count").text("Кол-во. голосовавших: " + self.rating_count);
 								$("#address_count_review").text("Кол-во отзывов: " + self.address_count_review);
 								
 								$("#foto").html(self.view.manager_el("base", "foto_req", link_pic));
 								$("#textAddress").trigger('update_menu',[ self.slected_id_address, self.selected_id_company ]);
 								
-								if (self.pid.PAGE != "undefined")
+								if (typeof(self.pid.PAGE) != "undefined")
 									self.selectPage(self.pid.PAGE);
+								else 
+									self.selectPage("Новости");
+								
 							})
 						});
 						
@@ -263,7 +275,7 @@ $(document).ready(function(){
 					
 					}
 				})
-			
+				
 			}
 			
 			self.priceLevelToImage = function(count){
@@ -285,10 +297,11 @@ $(document).ready(function(){
 					cache: false,
 					success: function(data){
 						console.dir("coordinate", data);
+						debugger
 					}
 				})
 			}
-
+		
 			self.list_address;
 		}
 		
@@ -312,6 +325,7 @@ $(document).ready(function(){
 			}
 			
 		}
+		
 		
 		//pages
 		self.selectPage = function(namePage){
@@ -607,11 +621,11 @@ $(document).ready(function(){
 				$("#sunday_left").val(val);
 				val = dataModel.information.time_work.res.Sunday.end;
 				$("#sunday_right").val(val);
-				
+
 				//Долгота
 				val = dataModel.information.longitude;
 				$("#current_longitude").val(val);
-				
+
 				//Широта
 				val = dataModel.information.latitude;
 				$("#current_latitude").val(val);
@@ -621,19 +635,19 @@ $(document).ready(function(){
 				val = dataModel.information.phone.main.phone;
 				$("#phone_right").val(val);
 				$("#phone_left").val(val);
-				
+
 				$("#add_phone").button({
 					icons: {
 						primary: "ui-icon ui-icon-plusthick"
 					}
 				});
-				
+
 				$("#del_phone").button({
 					icons: {
 						primary: "ui-icon ui-icon-minusthick"
 					}
-				});	
-					//основной тел.
+				});
+				//основной тел.
 					
 					//доп. тел
 					
@@ -642,7 +656,6 @@ $(document).ready(function(){
 				var myLatlng = new google.maps.LatLng(0, 0);
 				var map;
 				function initialize_map() {
-					
 					var myOptions = {
 						zoom: 12,
 						center: myLatlng,
@@ -654,52 +667,53 @@ $(document).ready(function(){
 					map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 				}
 				initialize_map();
+
 				var geocoder = new google.maps.Geocoder();
 				//address_right
-				function codeAddress(id, type) {
-					$("#test_api_googlemap_left").button( "option", "disabled", true );
-					$("#test_api_googlemap_right").button( "option", "disabled", true );
-					var address = document.getElementById(id).value;
-					var pos;
-					geocoder.geocode( { 'address': address}, function(results, status) {
-						if (status == google.maps.GeocoderStatus.OK) {
-							map.setCenter(results[0].geometry.location);
-							var marker = new google.maps.Marker({
-								map: map,
-								position: results[0].geometry.location
-							});
-							if (typeof(results[0]) != "undefined"){
-								var pos = results[0].geometry.location;
-								$("#latitude_address").val(pos["$a"]);
-								$("#longitude_address").val(pos["ab"]);
-								
-								if ($("#latitude_address").val() != $("#longitude_address")){
-									if (type == "first")
-										$("#msg_current_longitude").html("<p style='color: red;'>" + "error" + "</p>");
-								}
-								if ($("#longitude_address").val() != $("#longitude_address")){
-									if (type == "first")
-										$("#msg_current_latitude").html("<p style='color: red;'>" + "error" + "</p>");
-								}
+			function codeAddress(id, type) {
+				$("#test_api_googlemap_left").button( "option", "disabled", true );
+				$("#test_api_googlemap_right").button( "option", "disabled", true );
+				var address = document.getElementById(id).value;
+				var pos;
+				geocoder.geocode( { 'address': address}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						map.setCenter(results[0].geometry.location);
+						var marker = new google.maps.Marker({
+							map: map,
+							position: results[0].geometry.location
+						});
+						if (typeof(results[0]) != "undefined"){
+							var pos = results[0].geometry.location;
+							$("#latitude_address").val(pos["$a"]);
+							$("#longitude_address").val(pos["ab"]);
+
+							if ($("#latitude_address").val() != $("#longitude_address")){
+								if (type == "first")
+									$("#msg_current_longitude").html("<p style='color: red;'>" + "error" + "</p>");
 							}
-							
-						} else {
-							alert("Geocode was not successful for the following reason: " + status);
+							if ($("#longitude_address").val() != $("#longitude_address")){
+								if (type == "first")
+									$("#msg_current_latitude").html("<p style='color: red;'>" + "error" + "</p>");
+							}
 						}
-						$("#test_api_googlemap_left").button( "option", "disabled", false );
-						$("#test_api_googlemap_right").button( "option", "disabled", false );
-					});
-				}
-				
+
+					} else {
+						alert("Geocode was not successful for the following reason: " + status);
+					}
+					$("#test_api_googlemap_left").button( "option", "disabled", false );
+					$("#test_api_googlemap_right").button( "option", "disabled", false );
+				});
+			}
+
 				$("#test_api_googlemap_left").bind('click', function() {codeAddress("address_left")});
 				$("#test_api_googlemap_right").bind('click', function() {codeAddress("address_right")});
-				
+
 				codeAddress("address_right","first");
-				
-				
+
+
 				//-34.397, 150.644
-				
-				
+
+
 				//left
 				
 				

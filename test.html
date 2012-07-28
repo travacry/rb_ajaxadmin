@@ -9,7 +9,15 @@
 	<script src="js/jquery_ui/development-bundle/ui/jquery.ui.datepicker.js"></script>
 	<script src="js/jquery_ui/development-bundle/ui/jquery.ui.button.js"></script>
 	<link rel="stylesheet" href="js/jquery_ui/development-bundle/demos/demos.css">
-
+	
+	
+	
+	<link rel="stylesheet" href="../../themes/base/jquery.ui.all.css">
+	<script src="../../jquery-1.7.2.js"></script>
+	<script src="../../ui/jquery.ui.core.js"></script>
+	<script src="../../ui/jquery.ui.widget.js"></script>
+	<script src="../../ui/jquery.ui.datepicker.js"></script>
+	<link rel="stylesheet" href="../demos.css">
 	
 	
     <script type="text/javascript" src="js/ejs/ejs.js"></script>
@@ -25,7 +33,10 @@
 	</script>
 	
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
-
+	
+	<script type="text/javascript" src="js/test.js"></script>
+	
+	
 	<script type="text/javascript">
 	$(function() {
 		$( "#datepicker" ).datepicker({
@@ -34,46 +45,14 @@
 		
 		$( "input:submit, a, button", ".demo" ).button();
 		$( "a", ".demo" ).click(function() { return false; });
-	
-	
-		//google.map-api
-		
-		//	
 	});
-	var geocoder;
-	var map;
-	function initialize() {
-		geocoder = new google.maps.Geocoder();
-		var latlng = new google.maps.LatLng(-34.397, 150.644);
-		var mapOptions = {
-			zoom: 8,
-			center: latlng,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		}
-		map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-	}
+
 	
-	function codeAddress() {
-		var address = document.getElementById("address").value;
-		geocoder.geocode( { 'address': address}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				map.setCenter(results[0].geometry.location);
-				var marker = new google.maps.Marker({
-					map: map,
-					position: results[0].geometry.location
-				});
-			} else {
-				alert("Geocode was not successful for the following reason: " + status);
-			}
-			
-			$("#lat").append("<p>" + results[0].geometry.location["$a"] + "</p>");
-			$("#lng").append("<p>" + results[0].geometry.location["ab"] + "</p>");
-		});
-	}
+	
 	</script>
-	<script type="text/javascript" src="js/test.js"></script> 
+
 </head>
-<body onload="initialize()">
+<body>
 	<div id="map_canvas1" style="width: 500px; height: 200px"></div>
 	<div id="map_canvas2" style="width: 500px; height: 200px"></div>
 	<!--- <div id="map_canvas3" style="width: 500px; height: 200px"></div> --->
@@ -81,24 +60,13 @@
 	<p>Date: <input type="text" id="datepicker"></p>
 	<br>
 	
-	<!--- Виджет --->	
+	<!--- Виджет --->
+	
 	<div class="demo">
 	<button>A button element</button>
 	<input type="submit" value="A submit button"/>
 	<a href="#">An anchor</a>
 	</div><!-- End demo -->
-	
-	<!--- Цетрирование карты по адресу --->
-	
-	<div id="map_canvas" style="width: 500px; height: 200px;"></div>
-	<div>
-		<input id="address" type="textbox" value="Sydney, NSW">
-		<input type="button" value="Encode" onclick="codeAddress()">
-		<div id="lat"></div>
-		<div id="lng"></div>
-	</div>	
-	
-	<!--- Координаты по адресу --->
 	
 </body>
 </html>
