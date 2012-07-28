@@ -72,13 +72,13 @@ $(document).ready(function(){
 	}
 	init();
 	
-	//обработка меню
+	//РѕР±СЂР°Р±РѕС‚РєР° РјРµРЅСЋ
 	function Controller(){
 		var self = this;
 		self.pid = {}
 		self.pid.PAGE;
 		
-		//<id-ники
+		//<id-РЅРёРєРё
 		self.slected_id_address;
 		self.selected_id_company;
 		self.data_company = {};
@@ -92,33 +92,33 @@ $(document).ready(function(){
 		self.count_list = {};
 		
 		self.init.menu = function(){
-			//при обновлении , перебинд меню
+			//РїСЂРё РѕР±РЅРѕРІР»РµРЅРёРё , РїРµСЂРµР±РёРЅРґ РјРµРЅСЋ
 			$(".menu").html("");
 			var html = "";
 			//view
-			html += self.view.manager_el("menu","li", "Новости"); //id, type, text
-			html += self.view.manager_el("menu","li", "Меню");
-			html += self.view.manager_el("menu","li", "Информация");
-			html += self.view.manager_el("menu","li", "Отзывы");
-			html += self.view.manager_el("menu","li", "Интерьер");
-			html += self.view.manager_el("menu","li", "Клиенты");
-			html += self.view.manager_el("menu","li", "Настройки");
-			html += self.view.manager_el("menu","li", "Фотоочеты");
+			html += self.view.manager_el("menu","li", "РќРѕРІРѕСЃС‚Рё"); //id, type, text
+			html += self.view.manager_el("menu","li", "РњРµРЅСЋ");
+			html += self.view.manager_el("menu","li", "РРЅС„РѕСЂРјР°С†РёСЏ");
+			html += self.view.manager_el("menu","li", "РћС‚Р·С‹РІС‹");
+			html += self.view.manager_el("menu","li", "РРЅС‚РµСЂСЊРµСЂ");
+			html += self.view.manager_el("menu","li", "РљР»РёРµРЅС‚С‹");
+			html += self.view.manager_el("menu","li", "РќР°СЃС‚СЂРѕР№РєРё");
+			html += self.view.manager_el("menu","li", "Р¤РѕС‚РѕРѕС‡РµС‚С‹");
 			$(".menu").append(html);			
 			//controller
-			self.manager_el.click("menu", "a", "Новости", self.slected_id_address, self.selected_id_company);
-			self.manager_el.click("menu", "a", "Меню");
-			self.manager_el.click("menu", "a", "Информация", self.slected_id_address, self.selected_id_company);
-			self.manager_el.click("menu", "a", "Отзывы");
-			self.manager_el.click("menu", "a", "Интерьер");
-			self.manager_el.click("menu", "a", "Клиенты");
-			self.manager_el.click("menu", "a", "Настройки");
-			self.manager_el.click("menu", "a", "Фотоочеты");
+			self.manager_el.click("menu", "a", "РќРѕРІРѕСЃС‚Рё", self.slected_id_address, self.selected_id_company);
+			self.manager_el.click("menu", "a", "РњРµРЅСЋ");
+			self.manager_el.click("menu", "a", "РРЅС„РѕСЂРјР°С†РёСЏ", self.slected_id_address, self.selected_id_company);
+			self.manager_el.click("menu", "a", "РћС‚Р·С‹РІС‹");
+			self.manager_el.click("menu", "a", "РРЅС‚РµСЂСЊРµСЂ");
+			self.manager_el.click("menu", "a", "РљР»РёРµРЅС‚С‹");
+			self.manager_el.click("menu", "a", "РќР°СЃС‚СЂРѕР№РєРё");
+			self.manager_el.click("menu", "a", "Р¤РѕС‚РѕРѕС‡РµС‚С‹");
 		}
 		
-		//limit после модификации api -> sid
+		//limit РїРѕСЃР»Рµ РјРѕРґРёС„РёРєР°С†РёРё api -> sid
 		self.limit = 2;
-		//список индификаторов адресов
+		//СЃРїРёСЃРѕРє РёРЅРґРёС„РёРєР°С‚РѕСЂРѕРІ Р°РґСЂРµСЃРѕРІ
 		self.list_ids = [];
 		//
 		self.language = "ru";
@@ -144,9 +144,9 @@ $(document).ready(function(){
 					
 					for(next in data.response){
 						var name_company = data.response[next].name[self.language];
-						//список логотипов
+						//СЃРїРёСЃРѕРє Р»РѕРіРѕС‚РёРїРѕРІ
 						self.list_logo[name_company] = data.response[next].logo["114"];
-						//список копманий
+						//СЃРїРёСЃРѕРє РєРѕРїРјР°РЅРёР№
 						$("#idCompany").append('<option>' + name_company + '</option>');
 						//list id
 						list_id[name_company] = data.response[next].id;
@@ -171,7 +171,7 @@ $(document).ready(function(){
 							
 						});
 						
-						if (name_company != "-- Компания --"){
+						if (name_company != "-- РљРѕРјРїР°РЅРёСЏ --"){
 							self.loadAddress(self.selected_id_company);
 						}
 					}).trigger('change');
@@ -204,31 +204,31 @@ $(document).ready(function(){
 						//save all
 						self.address_get = data;
 						for(next in data.response){
-							//фото
+							//С„РѕС‚Рѕ
 							self.list_foto["" + next] = data.response[next].image[114];
 							self.list_address_id["" + next] = data.response[next].id;
-							//избранное
+							//РёР·Р±СЂР°РЅРЅРѕРµ
 							self.list_favourite_count["" + next] = data.response[next].estimate.favourite_count;
 							console.dir(data.response[next]);
-							//рейтинг
+							//СЂРµР№С‚РёРЅРі
 							if (typeof(data.response[next].estimate.rating[4]) != "undefined")
-								self.list_address_rating["" + next] = data.response[next].estimate.rating[4]; //почему 5 массивов ?
+								self.list_address_rating["" + next] = data.response[next].estimate.rating[4]; //РїРѕС‡РµРјСѓ 5 РјР°СЃСЃРёРІРѕРІ ?
 							else 
 								self.list_address_rating["" + next] = "0";
-							//кол-во поситителей голосующих за текущий рейтинг
+							//РєРѕР»-РІРѕ РїРѕСЃРёС‚РёС‚РµР»РµР№ РіРѕР»РѕСЃСѓСЋС‰РёС… Р·Р° С‚РµРєСѓС‰РёР№ СЂРµР№С‚РёРЅРі
 							if (typeof(data.response[next].estimate.rating_count[4]) != "undefined")
 								self.rating_count["" + next] = data.response[next].estimate.rating_count[4];
 							else
 								self.rating_count["" + next] = "0";
-							//кол-во отзывов
+							//РєРѕР»-РІРѕ РѕС‚Р·С‹РІРѕРІ
 							if (typeof(data.response[next].estimate.review_count[4]) != "undefined")
-								self.list_address_count_review["" + next] = data.response[next].estimate.review_count[4];//опять массив 5 эл.
+								self.list_address_count_review["" + next] = data.response[next].estimate.review_count[4];//РѕРїСЏС‚СЊ РјР°СЃСЃРёРІ 5 СЌР».
 							else
 								self.list_address_count_review["" + next] = "0";
 							
 							//self.list_address_likes["" + next];
 							self.list_address_name["" + next] = data.response[next].address.street[self.language];
-							//адреса
+							//Р°РґСЂРµСЃР°
 							var name_address = data.response[next].address.street[self.language];
 							$("#textAddress").append('<option>' + name_address + '</option>');
 						}
@@ -237,7 +237,7 @@ $(document).ready(function(){
 							var name_address = "";
 							$("#textAddress option:selected").each(function () {
 								name_address = $(this).text();
-								//получение координат по адресу
+								//РїРѕР»СѓС‡РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚ РїРѕ Р°РґСЂРµСЃСѓ
 								self.getCoordAddress(name_address);
 								var link_pic;
 								for(next in self.list_address_name){
@@ -254,10 +254,10 @@ $(document).ready(function(){
 								}
 								
 								$("#favourite").text(self.slected_favourite_count);
-								$("#address_subway").text("Метро: " + name_address);
-								$("#address_rating").text("Рейтинг: " + self.address_rating);
-								$("#rating_count").text("Кол-во. голосовавших: " + self.rating_count);
-								$("#address_count_review").text("Кол-во отзывов: " + self.address_count_review);
+								$("#address_subway").text("РњРµС‚СЂРѕ: " + name_address);
+								$("#address_rating").text("Р РµР№С‚РёРЅРі: " + self.address_rating);
+								$("#rating_count").text("РљРѕР»-РІРѕ. РіРѕР»РѕСЃРѕРІР°РІС€РёС…: " + self.rating_count);
+								$("#address_count_review").text("РљРѕР»-РІРѕ РѕС‚Р·С‹РІРѕРІ: " + self.address_count_review);
 								
 								$("#foto").html(self.view.manager_el("base", "foto_req", link_pic));
 								$("#textAddress").trigger('update_menu',[ self.slected_id_address, self.selected_id_company ]);
@@ -265,7 +265,7 @@ $(document).ready(function(){
 								if (typeof(self.pid.PAGE) != "undefined")
 									self.selectPage(self.pid.PAGE);
 								else 
-									self.selectPage("Новости");
+									self.selectPage("РќРѕРІРѕСЃС‚Рё");
 								
 							})
 						});
@@ -292,7 +292,7 @@ $(document).ready(function(){
 				$.ajax({
 					type: "POST",
 					url: "http://maps.googleapis.com/maps/api/geocode/json",
-					data: { address: "Рыбацкий пр.30", sensor: true },
+					data: { address: "Р С‹Р±Р°С†РєРёР№ РїСЂ.30", sensor: true },
 					dataType: "json",
 					cache: false,
 					success: function(data){
@@ -331,35 +331,35 @@ $(document).ready(function(){
 		self.selectPage = function(namePage){
 			self.pid.PAGE = namePage;
 			switch(namePage){
-				case "Новости":
+				case "РќРѕРІРѕСЃС‚Рё":
 					self.createPage.news();
 					self.managerAjax.beginCreateModelPage("news");						
 				break;
-				case "Меню":
+				case "РњРµРЅСЋ":
 					self.createPage.menu();
 					self.managerAjax.beginCreateModelPage("menu");				
 				break;
-				case "Информация":					
+				case "РРЅС„РѕСЂРјР°С†РёСЏ":					
 					self.createPage.information();
 					self.managerAjax.beginCreateModelPage("information", self.slected_id_address, self.selected_id_company, self.data_company);
 				break;
-				case "Отзывы":
+				case "РћС‚Р·С‹РІС‹":
 					self.createPage.reviews();
 					self.managerAjax.beginCreateModelPage("reviews");					
 				break;
-				case "Интерьер":
+				case "РРЅС‚РµСЂСЊРµСЂ":
 					self.createPage.interior();
 					self.managerAjax.beginCreateModelPage("interior");									
 				break;
-				case "Клиенты":
+				case "РљР»РёРµРЅС‚С‹":
 					self.createPage.clients();
 					self.managerAjax.beginCreateModelPage("clients");					
 				break;
-				case "Настройки":
+				case "РќР°СЃС‚СЂРѕР№РєРё":
 					self.createPage.settings();
 					self.managerAjax.beginCreateModelPage("settings");					
 				break;
-				case "Фотоочеты":
+				case "Р¤РѕС‚РѕРѕС‡РµС‚С‹":
 					self.createPage.photoreports();
 					self.managerAjax.beginCreateModelPage("photoreports");					
 				break;
@@ -375,20 +375,20 @@ $(document).ready(function(){
 		});
 		
 		self.createPage = {};
-		//без данных параметров нет
+		//Р±РµР· РґР°РЅРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ РЅРµС‚
 		
-		//страница - новости
+		//СЃС‚СЂР°РЅРёС†Р° - РЅРѕРІРѕСЃС‚Рё
 		self.createPage.news = function(){
 			var html = new EJS({url: 'templates/news/news.ejs'}).render();
 			$(".right").html(html);
 		}
 		
-		//страница - меню
+		//СЃС‚СЂР°РЅРёС†Р° - РјРµРЅСЋ
 		self.createPage.menu = function(){
 			var html = new EJS({url: 'templates/menu/menu.ejs'}).render();
 			$(".right").html(html);			
 		}
-		//страница - информация о компании
+		//СЃС‚СЂР°РЅРёС†Р° - РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєРѕРјРїР°РЅРёРё
 		self.createPage.information = function(){
 			var html = new EJS({url: 'templates/information/information.ejs'}).render();
 			$(".right").html(html);
@@ -401,31 +401,31 @@ $(document).ready(function(){
 			//$("#phone_right").
 		}
 		
-		//страница - отзывы
+		//СЃС‚СЂР°РЅРёС†Р° - РѕС‚Р·С‹РІС‹
 		self.createPage.reviews = function(){
 			var html = new EJS({url: 'templates/reviews/reviews.ejs'}).render();
 			$(".right").html(html);		
 		}
 		
-		//страница - интерьер
+		//СЃС‚СЂР°РЅРёС†Р° - РёРЅС‚РµСЂСЊРµСЂ
 		self.createPage.interior = function(){
 			var html = new EJS({url: 'templates/interior/interior.ejs'}).render();
 			$(".right").html(html);				
 		}
 		
-		//страница - клиенты
+		//СЃС‚СЂР°РЅРёС†Р° - РєР»РёРµРЅС‚С‹
 		self.createPage.clients = function(){
 			var html = new EJS({url: 'templates/clients/clients.ejs'}).render();
 			$(".right").html(html);			
 		}
 		
-		//страница - настройки
+		//СЃС‚СЂР°РЅРёС†Р° - РЅР°СЃС‚СЂРѕР№РєРё
 		self.createPage.settings = function(){
 			var html = new EJS({url: 'templates/settings/settings.ejs'}).render();
 			$(".right").html(html);		
 		}
 		
-		//страница - фотоотчеты
+		//СЃС‚СЂР°РЅРёС†Р° - С„РѕС‚РѕРѕС‚С‡РµС‚С‹
 		self.createPage.photoreports = function(){
 			var html = new EJS({url: 'templates/photoreports/photoreports.ejs'}).render();
 			$(".right").html(html);		
@@ -461,31 +461,31 @@ $(document).ready(function(){
 					$("#language_left option:selected").each(function () {
 						language_left = $(this).text();
 						
-						//Название
+						//РќР°Р·РІР°РЅРёРµ
 						var val = dataModel.information.name_company[language_left];
 						$("#name_company_left").val(val);
 						
-						//Описание(компания)
+						//РћРїРёСЃР°РЅРёРµ(РєРѕРјРїР°РЅРёСЏ)
 						val = dataModel.information.description_company[language_left];
 						$("#description_company_left").val(val);
 						
-						//Описание(адрес)
+						//РћРїРёСЃР°РЅРёРµ(Р°РґСЂРµСЃ)
 						val = dataModel.information.description_address[language_left];
 						$("#description_address_left").val(val);
 						
-						//Страна
+						//РЎС‚СЂР°РЅР°
 						val = dataModel.information.country[language_left];
 						$("#country_left").val(val);
 						
-						//Город
+						//Р“РѕСЂРѕРґ
 						val = dataModel.information.city[language_left];
 						$("#city_left").val(val);
 						
-						//Метро
+						//РњРµС‚СЂРѕ
 						val = dataModel.information.subway.main[language_left];
 						$("#subway_left").val(val);
 						
-						//Адрес
+						//РђРґСЂРµСЃ
 						val = dataModel.information.street_list[language_left];
 						$("#address_left").val(val);
 						
@@ -494,37 +494,37 @@ $(document).ready(function(){
 				
 				//right 
 				
-				//Название
+				//РќР°Р·РІР°РЅРёРµ
 				var val = dataModel.information.name_company[language_main];
 				$("#name_company_right").val(val);
 				
-				//Описание(компания)
+				//РћРїРёСЃР°РЅРёРµ(РєРѕРјРїР°РЅРёСЏ)
 				val = dataModel.information.description_company[language_main];
 				$("#description_company_right").val(val);
 				
-				//Юридическое лицо
+				//Р®СЂРёРґРёС‡РµСЃРєРѕРµ Р»РёС†Рѕ
 				val = dataModel.information.juridical_person;
-				val = "обговорить момент";
+				val = "РѕР±РіРѕРІРѕСЂРёС‚СЊ РјРѕРјРµРЅС‚";
 				$("#juridical_person_right").val(val);
 				$("#juridical_person_left").val(val);
 				
-				//Сайт
+				//РЎР°Р№С‚
 				val = dataModel.information.site;
 				$("#site_right").val(val);
 				$("#site_left").val(val);
 				
-				//Средний счет без нал.
+				//РЎСЂРµРґРЅРёР№ СЃС‡РµС‚ Р±РµР· РЅР°Р».
 				val = dataModel.information.no_cash;
 				$("#no_cash_right").val(val);
 				$("#no_cash_left").val(val);
 				
-				//Дата открытия
+				//Р”Р°С‚Р° РѕС‚РєСЂС‹С‚РёСЏ
 				val = dataModel.information.opening_date;
 				if (val != null){
 					var opening_date = new Date(val * 1000);
-					var openingDay = opening_date.getDate(); // Считываем число
-					var openingMonth =  opening_date.getMonth(); // Считываем месяц
-					var openingYear = opening_date.getYear() + 1900; // Считываем год
+					var openingDay = opening_date.getDate(); // РЎС‡РёС‚С‹РІР°РµРј С‡РёСЃР»Рѕ
+					var openingMonth =  opening_date.getMonth(); // РЎС‡РёС‚С‹РІР°РµРј РјРµСЃСЏС†
+					var openingYear = opening_date.getYear() + 1900; // РЎС‡РёС‚С‹РІР°РµРј РіРѕРґ
 						
 					if (openingDay < 9) 
 						openingDay = "0" + openingDay;
@@ -540,97 +540,97 @@ $(document).ready(function(){
 					$("#opening_date_left").val(val);
 					
 				}
-				//Описание(адрес)
+				//РћРїРёСЃР°РЅРёРµ(Р°РґСЂРµСЃ)
 				val = dataModel.information.description_address[language_main];
 				$("#description_address_right").val(val);
 				
-				//"Индекс"
+				//"РРЅРґРµРєСЃ"
 				val = dataModel.information.postal_code;
 				$("#postal_code_right").val(val);
 				$("#postal_code_left").val(val);
 				
-				//Всего (посадочных мест)
+				//Р’СЃРµРіРѕ (РїРѕСЃР°РґРѕС‡РЅС‹С… РјРµСЃС‚)
 				val = dataModel.information.capacity_all;
 				$("#capacity_all_right").val(val);
 				$("#capacity_all_left").val(val);
 				
-				//Ресторан
+				//Р РµСЃС‚РѕСЂР°РЅ
 				val = dataModel.information.capacity_indoor;
 				$("#capacity_indoor_right").val(val);
 				$("#capacity_indoor_left").val(val);
 				
-				//Терраса
+				//РўРµСЂСЂР°СЃР°
 				val = dataModel.information.capacity_outdoor;
 				$("#capacity_outdoor_right").val(val);
 				$("#capacity_outdoor_left").val(val);
 				
-				//Страна
+				//РЎС‚СЂР°РЅР°
 				val = dataModel.information.country[language_main];
 				$("#country_right").val(val);
 				
-				//Город
+				//Р“РѕСЂРѕРґ
 				val = dataModel.information.city[language_main];
 				$("#city_right").val(val);
 				
-				//Метро
+				//РњРµС‚СЂРѕ
 				val = dataModel.information.subway.main[language_main];
 				$("#subway_right").val(val);
 				
-				//Адрес
+				//РђРґСЂРµСЃ
 				val = dataModel.information.street_list[language_main];
 				$("#address_right").val(val);
 				
-				//Понедельник
+				//РџРѕРЅРµРґРµР»СЊРЅРёРє
 				val = dataModel.information.time_work.res.Monday.begin;
 				$("#monday_left").val(val);
 				val = dataModel.information.time_work.res.Monday.end;
 				$("#monday_right").val(val);
 				
-				//Вторник
+				//Р’С‚РѕСЂРЅРёРє
 				val = dataModel.information.time_work.res.Tuesday.begin;
 				$("#tuesday_left").val(val);
 				val = dataModel.information.time_work.res.Tuesday.end;
 				$("#tuesday_right").val(val);
 				
-				//Среда
+				//РЎСЂРµРґР°
 				val = dataModel.information.time_work.res.Wednesday.begin;
 				$("#wednesday_left").val(val);
 				val = dataModel.information.time_work.res.Wednesday.end;
 				$("#wednesday_right").val(val);
 				
-				//Четверг
+				//Р§РµС‚РІРµСЂРі
 				val = dataModel.information.time_work.res.Thursday.begin;
 				$("#thursday_left").val(val);
 				val = dataModel.information.time_work.res.Thursday.end;
 				$("#thursday_right").val(val);
 				
-				//Пятница
+				//РџСЏС‚РЅРёС†Р°
 				val = dataModel.information.time_work.res.Friday.begin;
 				$("#friday_left").val(val);
 				val = dataModel.information.time_work.res.Friday.end;
 				$("#friday_right").val(val);
 				
-				//Суббота
+				//РЎСѓР±Р±РѕС‚Р°
 				val = dataModel.information.time_work.res.Saturday.begin;
 				$("#saturday_left").val(val);
 				val = dataModel.information.time_work.res.Saturday.end;
 				$("#saturday_right").val(val);
 				
-				//Воскресенье
+				//Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ
 				val = dataModel.information.time_work.res.Sunday.begin;
 				$("#sunday_left").val(val);
 				val = dataModel.information.time_work.res.Sunday.end;
 				$("#sunday_right").val(val);
 
-				//Долгота
+				//Р”РѕР»РіРѕС‚Р°
 				val = dataModel.information.longitude;
 				$("#current_longitude").val(val);
 
-				//Широта
+				//РЁРёСЂРѕС‚Р°
 				val = dataModel.information.latitude;
 				$("#current_latitude").val(val);
 				
-				//"Телефон"
+				//"РўРµР»РµС„РѕРЅ"
 				//dataModel[namePage].phone.list
 				val = dataModel.information.phone.main.phone;
 				$("#phone_right").val(val);
@@ -647,9 +647,9 @@ $(document).ready(function(){
 						primary: "ui-icon ui-icon-minusthick"
 					}
 				});
-				//основной тел.
+				//РѕСЃРЅРѕРІРЅРѕР№ С‚РµР».
 					
-					//доп. тел
+					//РґРѕРї. С‚РµР»
 					
 				//init_data["phoneType.get"]
 				
@@ -717,18 +717,18 @@ $(document).ready(function(){
 				//left
 				
 				
-			//console.log($("div:contains('Название')").html()); 
+			//console.log($("div:contains('РќР°Р·РІР°РЅРёРµ')").html()); 
 			/*
 					for (nextElement in $("div.canvas_text")){
 						if (nextElement.match(/^[-\+]?\d+/) === null){
 						} else { 							
-							var re = /[А-Яа-я]+/;
+							var re = /[Рђ-РЇР°-СЏ]+/;
 							var name = $("div.canvas_text").get(nextElement);
 							name = $(name).html();
 
 
 							switch(name.match(re)[0]){
-								case "Язык":
+								case "РЇР·С‹Рє":
 									console.log("ObjModelPage");
 									console.log(ObjModelPage.language.main);
 									//$("div.canvas_text").get(nextElement).html("ObjModelPage.language.main");
@@ -754,7 +754,7 @@ $(document).ready(function(){
 					//save_
 					//help_
 					html =	'<div class="title">&nbsp&nbsp&nbsp' + text + ':';
-					html += '<input id="' + 'save_' + id + '" type="button" value="Сохранить" style="float: right;"></input>';
+					html += '<input id="' + 'save_' + id + '" type="button" value="РЎРѕС…СЂР°РЅРёС‚СЊ" style="float: right;"></input>';
 					html += '<input id="' + 'help_' + id + '" type="button" value="&nbsp?&nbsp" style="float: right;"></input>';
 					html += '</div>';
 					return html;
@@ -803,16 +803,16 @@ $(document).ready(function(){
 					return "<li><a id='" + id + "_" + self.count_list["" + id] + "' href='#'>" + text + "</a></li>";
 				break;
 				case "logo":
-					return '<img src="../images/loading.gif" alt="Логотип" id="logo" width="100px" class="passe-partout">';
+					return '<img src="../images/loading.gif" alt="Р›РѕРіРѕС‚РёРї" id="logo" width="100px" class="passe-partout">';
 				break;
 				case "foto":
-					return '<img src="../images/loading.gif" alt="Фото" id="foto" class="passe-partout">';
+					return '<img src="../images/loading.gif" alt="Р¤РѕС‚Рѕ" id="foto" class="passe-partout">';
 				break;
 				case "logo_req":
-					return '<img src="' + text + '" alt="Логотип" id="logo" class="passe-partout">';
+					return '<img src="' + text + '" alt="Р›РѕРіРѕС‚РёРї" id="logo" class="passe-partout">';
 				break;
 				case "foto_req":
-					return '<img src="' + text + '" alt="Фото" id="foto" class="passe-partout">';
+					return '<img src="' + text + '" alt="Р¤РѕС‚Рѕ" id="foto" class="passe-partout">';
 				break;										
 			}
 		}
@@ -820,13 +820,13 @@ $(document).ready(function(){
 	
 	
 	var dataModel = {};
-	//process id .Ajax контроль за вызовами
+	//process id .Ajax РєРѕРЅС‚СЂРѕР»СЊ Р·Р° РІС‹Р·РѕРІР°РјРё
 	dataModel.pid = {};
 	
 	function Model(){
 		
 		var self = this;
-		//кол-во запросов
+		//РєРѕР»-РІРѕ Р·Р°РїСЂРѕСЃРѕРІ
 		self.count_request = {};
 		self.count_response = {};
 		
@@ -859,13 +859,13 @@ $(document).ready(function(){
 				success: function(data){
 					
 					if (typeof(data.response) != "undefined"){
-						//общее кол-во ответов от сервера
+						//РѕР±С‰РµРµ РєРѕР»-РІРѕ РѕС‚РІРµС‚РѕРІ РѕС‚ СЃРµСЂРІРµСЂР°
 						if (typeof(self.count_response["" + manager_param]) == "undefined")
 							self.count_response["" + manager_param] = 1;
 						else
 							++self.count_response["" + manager_param];
 						
-						//данные для каркаса элементов
+						//РґР°РЅРЅС‹Рµ РґР»СЏ РєР°СЂРєР°СЃР° СЌР»РµРјРµРЅС‚РѕРІ
 						AddDataAjax(data, method);
 						
 					} else if (typeof(data.error)){
@@ -892,7 +892,7 @@ $(document).ready(function(){
 		ajax_self.id = 0;
 		ajax_self.mod = new Model();
 		
-		//для наглядности
+		//РґР»СЏ РЅР°РіР»СЏРґРЅРѕСЃС‚Рё
 		/*
 		self.base_info;
 		self.imformation_about_company;
@@ -904,7 +904,7 @@ $(document).ready(function(){
 		ajax_self.test = function(){
 		}
 		
-		//число повторных проверок валидности ответов
+		//С‡РёСЃР»Рѕ РїРѕРІС‚РѕСЂРЅС‹С… РїСЂРѕРІРµСЂРѕРє РІР°Р»РёРґРЅРѕСЃС‚Рё РѕС‚РІРµС‚РѕРІ
 		ajax_self.count_endCreateModelPage = 0;
 		
 		ajax_self.endCreateModelPage = function(namePage, data_company, id_address){
@@ -916,7 +916,7 @@ $(document).ready(function(){
 			
 			if((ajax_self.mod.count_request["" + namePage] == ajax_self.mod.count_response["" + namePage])&&(dataModel.pid.Ajax > 0)){
 				clearInterval(ajax_self.intervalID);
-				//ответ валиден
+				//РѕС‚РІРµС‚ РІР°Р»РёРґРµРЅ
 				ajax_dataModel.createPageModel(namePage, data_company, id_address);
 			}
 			++ajax_self.count_endCreateModelPage;
@@ -924,8 +924,8 @@ $(document).ready(function(){
 		
 		/*
 		self.CreateViewPage = function(namePage){
-			//данные для станиы сформированны
-			//котроллеры для страниц
+			//РґР°РЅРЅС‹Рµ РґР»СЏ СЃС‚Р°РЅРёС‹ СЃС„РѕСЂРјРёСЂРѕРІР°РЅРЅС‹
+			//РєРѕС‚СЂРѕР»Р»РµСЂС‹ РґР»СЏ СЃС‚СЂР°РЅРёС†
 			switch(namePage){
 				case: "information":
 					
@@ -936,7 +936,7 @@ $(document).ready(function(){
 		
 		ajax_self.AddDataAjax = function(data, nameMethod){
 			
-			//добавление данных в модель
+			//РґРѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅС‹С… РІ РјРѕРґРµР»СЊ
 			for(name in data){
 				ajax_self.data[nameMethod] = {};
 				ajax_self.data[nameMethod][name] = data["" + name];
@@ -946,9 +946,9 @@ $(document).ready(function(){
 		
 		ajax_self.intervalID = "";
 		ajax_self.beginCreateModelPage = function(namePage, id_address, id_company, data_company){
-			//начало вызова
+			//РЅР°С‡Р°Р»Рѕ РІС‹Р·РѕРІР°
 			ajax_self.data = {};
-			//ajax вызовы
+			//ajax РІС‹Р·РѕРІС‹
 			switch(namePage){
 				case "news":
 				break;
@@ -968,14 +968,14 @@ $(document).ready(function(){
 					param1.val = 2;
 					ajax_self.mod.driver_ajax(1, ajax_self.AddDataAjax, "information", "company.get", param1);
 					
-					//не пашет
+					//РЅРµ РїР°С€РµС‚
 					param1.name = "company_ids";
 					param1.val = id_company;
 					ajax_self.mod.driver_ajax(1, ajax_self.AddDataAjax, "information", "address.get", param1);
 					
-					//денежные единицы
+					//РґРµРЅРµР¶РЅС‹Рµ РµРґРёРЅРёС†С‹
 					ajax_self.mod.driver_ajax(1, ajax_self.AddDataAjax, "information", "currency.get");
-					//страны системы
+					//СЃС‚СЂР°РЅС‹ СЃРёСЃС‚РµРјС‹
 					ajax_self.mod.driver_ajax(1, ajax_self.AddDataAjax, "information", "country.get");
 					
 					//wait
@@ -983,7 +983,7 @@ $(document).ready(function(){
 						ajax_self.intervalID  = setInterval(function(){
 							ajax_self.endCreateModelPage(namePage, data_company, id_address);  
 							dataModel.pid.Ajax = 1;
-						} ,2000); //повторение проверки через 30 сек * 3 1.5 мин на ожидание
+						} ,2000); //РїРѕРІС‚РѕСЂРµРЅРёРµ РїСЂРѕРІРµСЂРєРё С‡РµСЂРµР· 30 СЃРµРє * 3 1.5 РјРёРЅ РЅР° РѕР¶РёРґР°РЅРёРµ
 					}
 				break;
 				case "reviews":
@@ -1004,8 +1004,8 @@ $(document).ready(function(){
 		
 		ajax_dataModel.createPageModel = function(namePage, data_company, id_address){
 			console.log("PID ", dataModel.pid.Ajax);
-			//добавление данных в модель
-			//							кеширование данных 
+			//РґРѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅС‹С… РІ РјРѕРґРµР»СЊ
+			//							РєРµС€РёСЂРѕРІР°РЅРёРµ РґР°РЅРЅС‹С… 
 			
 			/* for(name in data){
 				ajax_dataModel.data["" + name] = data["" + name];
@@ -1027,7 +1027,7 @@ $(document).ready(function(){
 				case "menu":
 				break;
 				case "information":
-					//ответ на прямой запрос 
+					//РѕС‚РІРµС‚ РЅР° РїСЂСЏРјРѕР№ Р·Р°РїСЂРѕСЃ 
 					
 					if (dataModel.pid.Ajax == 1){
 						
@@ -1039,22 +1039,22 @@ $(document).ready(function(){
 							}
 						}
 												
-						/* Компания */
+						/* РљРѕРјРїР°РЅРёСЏ */
 						
-						//Язык - [] без [0]
+						//РЇР·С‹Рє - [] Р±РµР· [0]
 						dataModel[namePage].language = {};
 						dataModel[namePage].language.main = data_company.language[0];
 						dataModel[namePage].language.list = data_company.language;
 						
 						
-						//Название
+						//РќР°Р·РІР°РЅРёРµ
 						dataModel[namePage].name_company = data_company.name;
-						//Описание
+						//РћРїРёСЃР°РЅРёРµ
 						dataModel[namePage].description_company = data_company.description;
-						//Юридическое лицо ?
+						//Р®СЂРёРґРёС‡РµСЃРєРѕРµ Р»РёС†Рѕ ?
 						dataModel[namePage].juridical_person = "";
 						
-						//Рейтинг среднего счета без нал. (сумма)
+						//Р РµР№С‚РёРЅРі СЃСЂРµРґРЅРµРіРѕ СЃС‡РµС‚Р° Р±РµР· РЅР°Р». (СЃСѓРјРјР°)
 						dataModel[namePage].reiting_no_cash = data_company.check;
 						
 						/*
@@ -1062,28 +1062,28 @@ $(document).ready(function(){
 						dataModel[namePage].language.main = ajax_self.data["company.get"].response[0].language.shift();
 						dataModel[namePage].language.list = ajax_self.data["company.get"].response[0].language;
 						
-						//Название
+						//РќР°Р·РІР°РЅРёРµ
 						dataModel[namePage].name_company = ajax_self.data["company.get"].response[0].name;
-						//Описание
+						//РћРїРёСЃР°РЅРёРµ
 						dataModel[namePage].description_company = ajax_self.data["company.get"].response[0].description;
-						//Юридическое лицо ?
+						//Р®СЂРёРґРёС‡РµСЃРєРѕРµ Р»РёС†Рѕ ?
 						dataModel[namePage].juridical_person = "";
-						//Средний счет без нал.
+						//РЎСЂРµРґРЅРёР№ СЃС‡РµС‚ Р±РµР· РЅР°Р».
 						dataModel[namePage].no_cash = ajax_self.data["company.get"].response[0].check;
-						//Вся валюта системы
-						dataModel[namePage].no_cash = ajax_self.data["currency.get"].response[0].sign; //obj id=1, руб.
-						//Валюта ресторана ?
+						//Р’СЃСЏ РІР°Р»СЋС‚Р° СЃРёСЃС‚РµРјС‹
+						dataModel[namePage].no_cash = ajax_self.data["currency.get"].response[0].sign; //obj id=1, СЂСѓР±.
+						//Р’Р°Р»СЋС‚Р° СЂРµСЃС‚РѕСЂР°РЅР° ?
 						dataModel[namePage].money_unit = "";
-						//Рейтинг среднего счета без нал. (пока костыль ?)
+						//Р РµР№С‚РёРЅРі СЃСЂРµРґРЅРµРіРѕ СЃС‡РµС‚Р° Р±РµР· РЅР°Р». (РїРѕРєР° РєРѕСЃС‚С‹Р»СЊ ?)
 						dataModel[namePage].reiting_no_cash = ajax_self.data["company.get"].response[0].check;
 						*/
-						/* Адрес */
+						/* РђРґСЂРµСЃ */
 	
-						//Дата открытия (null ? ?? )
+						//Р”Р°С‚Р° РѕС‚РєСЂС‹С‚РёСЏ (null ? ?? )
 						dataModel[namePage].opening_date = data_address.opening_date;
-						//Сайт (!!! косяк -> адрес)
+						//РЎР°Р№С‚ (!!! РєРѕСЃСЏРє -> Р°РґСЂРµСЃ)
 						dataModel[namePage].site = data_company.site;
-						//Телефон (у компании есть ?)
+						//РўРµР»РµС„РѕРЅ (Сѓ РєРѕРјРїР°РЅРёРё РµСЃС‚СЊ ?)
 						dataModel[namePage].phone = {};
 						dataModel[namePage].phone = data_address.phone;
 						dataModel[namePage].phone.list = {};
@@ -1091,36 +1091,36 @@ $(document).ready(function(){
 						if (typeof(data_address.phone[0]) != "undefined"){
 							for(var next in data_address.phone){
 								if (data_address.phone[next].type == 1){
-									//основной телефон
+									//РѕСЃРЅРѕРІРЅРѕР№ С‚РµР»РµС„РѕРЅ
 									dataModel[namePage].phone.main = data_address.phone[next].phone;
 								} else {
 									for (var next_type in init_data["phoneType.get"].response){
 										if (data_address.phone[next].type == init_data["phoneType.get"].response[next_type].type){
 											var name_type = init_data["phoneType.get"].response[next_type].name[dataModel[namePage].language.main];
-											//все телефоны, -"Основной"
+											//РІСЃРµ С‚РµР»РµС„РѕРЅС‹, -"РћСЃРЅРѕРІРЅРѕР№"
 											dataModel[namePage].phone.list[name_type] = data_address.phone[next].phone;
 										}
 									}									
 								}
 							}
 						}
-						//Индекс
+						//РРЅРґРµРєСЃ
 						dataModel[namePage].postal_code = data_address.address.postal_code;
-						//Описание
+						//РћРїРёСЃР°РЅРёРµ
 						dataModel[namePage].description_address = data_address.description;
-						//Кол-во посадочных мест :							
-							//Ресторан:
+						//РљРѕР»-РІРѕ РїРѕСЃР°РґРѕС‡РЅС‹С… РјРµСЃС‚ :							
+							//Р РµСЃС‚РѕСЂР°РЅ:
 							dataModel[namePage].capacity_indoor = data_address.capacity.indoor;
-							//Терраса:
+							//РўРµСЂСЂР°СЃР°:
 							dataModel[namePage].capacity_outdoor = data_address.capacity.outdoor;
-							//Всего п.м
+							//Р’СЃРµРіРѕ Рї.Рј
 							dataModel[namePage].capacity_all = dataModel[namePage].capacity_indoor + dataModel[namePage].capacity_outdoor;
 				
 						
-						//Адрес:
+						//РђРґСЂРµСЃ:
 						dataModel[namePage].street_list = data_address.address.street;
 						
-						//Время работы (ресторана):
+						//Р’СЂРµРјСЏ СЂР°Р±РѕС‚С‹ (СЂРµСЃС‚РѕСЂР°РЅР°):
 					
 						dataModel[namePage].time_work = {};
 						dataModel[namePage].time_work.res = {};
@@ -1157,7 +1157,7 @@ $(document).ready(function(){
 						dataModel[namePage].time_work.res.Sunday.kitchen = "";
 						
 						
-						//Понедельник
+						//РџРѕРЅРµРґРµР»СЊРЅРёРє
 						if (typeof(data_address.worktime[1][0]) != "undefined"){
 							if (typeof(data_address.worktime[1][0][0]) != "undefined")
 								dataModel["" + namePage].time_work.res.Monday.begin = ajax_self.getformatSM(data_address.worktime[1][0][0]);
@@ -1168,7 +1168,7 @@ $(document).ready(function(){
 							if (typeof(data_address.worktime[1][1][0]) != "undefined")
 								dataModel["" + namePage].time_work.res.Monday.kitchen = ajax_self.getformatSM(data_address.worktime[1][1][0]);
 						}
-						//Вторник
+						//Р’С‚РѕСЂРЅРёРє
 						if (typeof(data_address.worktime[2][0]) != "undefined"){
 							if (typeof(data_address.worktime[2][0][0]) != "undefined")
 								dataModel["" + namePage].time_work.res.Tuesday.begin = ajax_self.getformatSM(data_address.worktime[2][0][0]);
@@ -1179,7 +1179,7 @@ $(document).ready(function(){
 							if (typeof(data_address.worktime[2][1][0]) != "undefined")
 								dataModel["" + namePage].time_work.res.Tuesday.kitchen = ajax_self.getformatSM(data_address.worktime[2][1][0]);
 						}
-						//Среда
+						//РЎСЂРµРґР°
 						if (typeof(data_address.worktime[3][0]) != "undefined"){
 							if (typeof(data_address.worktime[3][0][0]) != "undefined")
 								dataModel["" + namePage].time_work.res.Wednesday.begin = ajax_self.getformatSM(data_address.worktime[3][0][0]);
@@ -1190,7 +1190,7 @@ $(document).ready(function(){
 							if (typeof(data_address.worktime[3][1][0]) != "undefined")
 								dataModel["" + namePage].time_work.res.Wednesday.kitchen = ajax_self.getformatSM(data_address.worktime[3][1][0]);								
 						}
-						//Четверг
+						//Р§РµС‚РІРµСЂРі
 						if (typeof(data_address.worktime[4][0]) != "undefined"){
 							if (typeof(data_address.worktime[4][0][0]) != "undefined")
 								dataModel["" + namePage].time_work.res.Thursday.begin = ajax_self.getformatSM(data_address.worktime[4][0][0]);
@@ -1201,7 +1201,7 @@ $(document).ready(function(){
 							if (typeof(data_address.worktime[4][1][0]) != "undefined")
 								dataModel["" + namePage].time_work.res.Thursday.kitchen = ajax_self.getformatSM(data_address.worktime[4][1][0]);							
 						}
-						//Пятница
+						//РџСЏС‚РЅРёС†Р°
 						if (typeof(data_address.worktime[5][0]) != "undefined"){
 							if (typeof(data_address.worktime[5][0][0]) != "undefined")
 								dataModel["" + namePage].time_work.res.Friday.begin = ajax_self.getformatSM(data_address.worktime[5][0][0]);
@@ -1212,7 +1212,7 @@ $(document).ready(function(){
 							if (typeof(data_address.worktime[5][1][0]) != "undefined")
 								dataModel["" + namePage].time_work.res.Friday.kitchen = ajax_self.getformatSM(data_address.worktime[5][1][0]);									
 						}
-						//Суббота
+						//РЎСѓР±Р±РѕС‚Р°
 						if (typeof(data_address.worktime[6][0]) != "undefined"){
 							dataModel["" + namePage].time_work.res.Saturday = {};
 							if (typeof(data_address.worktime[6][0][0]) != "undefined")
@@ -1224,7 +1224,7 @@ $(document).ready(function(){
 							if (typeof(data_address.worktime[6][1][0]) != "undefined")
 								dataModel["" + namePage].time_work.res.Saturday.kitchen = ajax_self.getformatSM(data_address.worktime[6][1][0]);	
 						}
-						//Воскресенье
+						//Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ
 						if (typeof(data_address.worktime[0][0]) != "undefined"){
 							dataModel["" + namePage].time_work.res.Sunday = {};
 							if (typeof(data_address.worktime[0][0][0]) != "undefined")
@@ -1237,27 +1237,27 @@ $(document).ready(function(){
 								dataModel["" + namePage].time_work.res.Sunday.kitchen = ajax_self.getformatSM(data_address.worktime[6][1][1]);								
 						}
 						
-						//Долгота
+						//Р”РѕР»РіРѕС‚Р°
 						dataModel["" + namePage].longitude = data_address.address.longitude;
-						//Широта
+						//РЁРёСЂРѕС‚Р°
 						dataModel["" + namePage].latitude = data_address.address.latitude;	
 					
 					
-					//Город:						
+					//Р“РѕСЂРѕРґ:						
 					for(var res in init_data["city.get"].response){
 						if (init_data["city.get"].response[res].id == data_address.address.city_id){
 							dataModel["" + namePage].city = init_data["city.get"].response[res].name;
 						}
 					}
 					
-					//Страна:
+					//РЎС‚СЂР°РЅР°:
 					for(var res in init_data["country.get"].response){
 						if (init_data["country.get"].response[res].id == data_address.address.country_id){
 							dataModel["" + namePage].country = init_data["country.get"].response[res].name;
 						}
 					}
 					
-					//Метро:
+					//РњРµС‚СЂРѕ:
 					var count = 0;
 					dataModel[namePage].subway = {};
 					dataModel[namePage].subway.list = [];
@@ -1269,16 +1269,16 @@ $(document).ready(function(){
 							}
 						}
 					}
-					//основное метро
+					//РѕСЃРЅРѕРІРЅРѕРµ РјРµС‚СЂРѕ
 					dataModel[namePage].subway.main = dataModel[namePage].subway.list.shift();
 				
 					
-					//Валюта ресторана:
-					var resto_val = init_data["currency.get"].response[0].sign;	//.руб	(пока обьект 1)			
-					//Средний счет без нал.:
+					//Р’Р°Р»СЋС‚Р° СЂРµСЃС‚РѕСЂР°РЅР°:
+					var resto_val = init_data["currency.get"].response[0].sign;	//.СЂСѓР±	(РїРѕРєР° РѕР±СЊРµРєС‚ 1)			
+					//РЎСЂРµРґРЅРёР№ СЃС‡РµС‚ Р±РµР· РЅР°Р».:
 					dataModel[namePage].no_cash = data_company.price.check + " " + resto_val;
 					
-					//завершение запросов
+					//Р·Р°РІРµСЂС€РµРЅРёРµ Р·Р°РїСЂРѕСЃРѕРІ
 					dataModel.pid.Ajax = 0;
 
 					$("#textAddress").trigger('update_info',[ namePage, dataModel[namePage] ]);
@@ -1308,10 +1308,10 @@ $(document).ready(function(){
 				var seconds = sec % 60; 
 				var hours = parseInt(minutes / 60); 
 				minutes = minutes % 60; 
-				// Обеспечиваем ведущие нули 
+				// РћР±РµСЃРїРµС‡РёРІР°РµРј РІРµРґСѓС‰РёРµ РЅСѓР»Рё 
 				if(String(minutes).length != 2) minutes = "0" + minutes; 
 				if(String(seconds).length != 2) seconds = "0" + seconds; 
-				// Выводим результат 
+				// Р’С‹РІРѕРґРёРј СЂРµР·СѓР»СЊС‚Р°С‚ 
 				return hours + ":" + minutes; 
 			}		
 	}
