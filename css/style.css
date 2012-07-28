@@ -205,9 +205,129 @@ ul.menu a:active{
 	height: 100px;
 }
 
+.conteiner .right .canvas_note_mid_news{
+	height: 110px;
+}
+
 .conteiner .right .canvas_note_veryBid{
 	height: 350px;
 }
 
+/* лоадер */
+
+.conteiner .right .canvas_note_main_loader{
+	height: 800px;
+	margin: 200px;
+}
+
+.conteiner .right .passe-main_loader{
+	width: 200px;
+	height: 200px;
+}
+
+/* для меню */
+
+.conteiner .right .canvas_menu_small{
+	margin-top: 10px;
+	height: 20px;
+}
+
+.conteiner .right .canvas_menu_big{
+	height: 100px;
+}
+
+.conteiner .right .canvas_menu_chain{
+	width: 4%;
+	height: 100%;
+	float: left;
+	border: 1px solid #808080; border-right: 0px;
+}
+.conteiner .right .canvas_menu_actively{
+	width: 4%;
+	height: 100%;
+	float: left;
+	border: 1px solid #808080; border-right: 0px;
+}
+
+.conteiner .right .canvas_menu_campaign{
+	width: 6%;
+	height: 100%;
+	float: left;
+	border: 1px solid #808080; border-right: 0px;
+}
+
+.conteiner .right .canvas_menu_foto{
+	width: 20%;
+	height: 100%;
+	float: left;
+	border: 1px solid #808080; border-right: 0px;
+}
+
+.conteiner .right .canvas_menu_category{
+	width: 13%;
+	height: 100%;
+	float: left;
+	border: 1px solid #808080; border-right: 0px;
+}
+
+.conteiner .right .canvas_menu_name{
+	width: 13%;
+	height: 100%;
+	float: left;
+	border: 1px solid #808080; border-right: 0px;
+}
+
+.conteiner .right .canvas_menu_description{
+	width: 25%;
+	height: 100%;
+	float: left;
+	border: 1px solid #808080; border-right: 0px;
+}
+
+.conteiner .right .canvas_menu_price{
+	width: 7%;
+	height: 100%;
+	float: left;
+	border: 1px solid #808080; border-right: 0px;
+}
+
+.conteiner .right .canvas_menu_doc{
+	width: 7.5%;
+	height: 100%;
+	float: left;
+	border: 1px solid #808080;
+}
+
+/* новости */
+.conteiner .right .canvas_news_mid{
+	height: 500px;
+}
+
+.conteiner .right .canvas_text_news{
+	width: 101px;
+	height: 100%;
+	float: left;
+}
+
+.conteiner .right  .canvas_news_note{
+	width: 100%;
+	height: 100%;
+	float: left;
+	border: 1px solid #808080;
+}
+
+.conteiner .right .canvas_news_left{
+	width: 529px;
+	/* background: #c5c2c1; */
+	height: 100%;
+	float: left;
+}
+
+.conteiner .right .canvas_news_right{
+	width: 529px;
+	/* background: #c5c2c1; */
+	height: 100%;
+	float: left;
+}
 /* end right */		
 		
