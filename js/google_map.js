@@ -1,4 +1,7 @@
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+    trava , randge 50m
+*/
 function g_map(){
 
     var self = this;
@@ -93,3 +96,4 @@ function g_map(){
     $("#test_api_googlemap_right").bind('click', function() { self.geocode({address: $("#address_right").val() }); self.circle.setMap(self.map); });
     $("#test_api_googlemap_left").bind('click', function() { self.geocode({address: $("#address_left").val() }); self.circle.setMap(self.map); });
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
