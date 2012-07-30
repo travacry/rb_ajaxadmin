@@ -7,6 +7,8 @@ $(function(){
 	var view_g = new View();
 
 	function initPage(){
+        console.log("init_data");
+        console.dir(init_data);
 		controller = new Controller();
 		controller.init.base();
 	}
@@ -260,72 +262,52 @@ $(function(){
 					}
 				});
 
-				$("#del_phone").button({
+				$(".del_widgetw17px").button({
 					icons: {
 						primary: "ui-icon ui-icon-minusthick"
 					}
 				});
+
+                var html = "";
+                var index_main;
+                var list_type_phone = {};
+                for (var next in init_data["phoneType.get"].response) {
+                    list_type_phone[next] = init_data["phoneType.get"].response[next].name[language_main];
+                    if (init_data["phoneType.get"].response[next].name[language_main] == "Основной"){
+                        index_main = next;
+                    } else {
+                        html += view_g.manager_widgetEl("phone", "select", "right", init_data["phoneType.get"].response[next].name[language_main]);
+                    }
+                }
+                $("#add_phone").click(function() {
+                    //type_phone
+
+
+                    html =  "<div class='canvas_note_small'>";
+                    html += "<div class='canvas_text' style='color: grey;'><p>Факс:</p></div>";
+                    html += "<div class='canvas_left' align='left'><input id='phone_right' disabled class='widget80p20px'></input>";
+                    html += "<button id='del_phone' class='del_widgetw17px'>Del</button></div>";
+                    html += "<div class='canvas_left' align='left'><input id='phone_left' disabled class='widget98p20px'></input></div></div>";
+
+                    $("#ptr_phone").append(html);
+
+                    $(".del_widgetw17px").button();
+                    $(".del_widgetw17px").button({  icons: {    primary: "ui-icon ui-icon-minusthick"   }   });
+
+                });
+
+
+                $("#type_phone").append(html);
 				//основной тел.
-					
+
 				//доп. тел
 
-				
-				var myLatlng = new google.maps.LatLng(0, 0);
-				var map;
-				function initialize_map() {
-					var myOptions = {
-						zoom: 12,
-						center: myLatlng,
-						mapTypeId: google.maps.MapTypeId.ROADMAP,
-						draggableCursor: 'auto',
-						draggingCursor: 'move',
-						disableDoubleClickZoom: true
-					}
-					map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-				}
-				initialize_map();
+                //карта
+                var google_map  = new g_map();
 
-				var geocoder = new google.maps.Geocoder();
-				//address_right
-			function codeAddress(id, type) {
-				$("#test_api_googlemap_left").button( "option", "disabled", true );
-				$("#test_api_googlemap_right").button( "option", "disabled", true );
-				var address = document.getElementById(id).value;
-				var pos;
-				geocoder.geocode( { 'address': address}, function(results, status) {
-					if (status == google.maps.GeocoderStatus.OK) {
-						map.setCenter(results[0].geometry.location);
-						var marker = new google.maps.Marker({
-							map: map,
-							position: results[0].geometry.location
-						});
-						if (typeof(results[0]) != "undefined"){
-							var pos = results[0].geometry.location;
-							$("#latitude_address").val(pos["$a"]);
-							$("#longitude_address").val(pos["ab"]);
+                $("#test_api_googlemap_left").button({ disabled: true });
 
-							if ($("#latitude_address").val() != $("#longitude_address")){
-								if (type == "first")
-									$("#msg_current_longitude").html("<p style='color: red;'>" + "error" + "</p>");
-							}
-							if ($("#longitude_address").val() != $("#longitude_address")){
-								if (type == "first")
-									$("#msg_current_latitude").html("<p style='color: red;'>" + "error" + "</p>");
-							}
-						}
 
-					} else {
-						alert("Geocode was not successful for the following reason: " + status);
-					}
-					$("#test_api_googlemap_left").button( "option", "disabled", false );
-					$("#test_api_googlemap_right").button( "option", "disabled", false );
-				});
-			}
-
-				$("#test_api_googlemap_left").bind('click', function() {codeAddress("address_left")});
-				$("#test_api_googlemap_right").bind('click', function() {codeAddress("address_right")});
-
-				codeAddress("address_right","first");
 
 			break;
 		}
@@ -338,5 +320,4 @@ $(function(){
 	$("#textAddress").on("update_page", function(e, id_address, id_company){
 
 	});
-
 })

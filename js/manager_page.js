@@ -7,15 +7,6 @@ function manager_page(){
 	ajax_self.id = 0;
 	ajax_self.mod = new Model();
 
-	//для наглядности
-	/*
-	 self.base_info;
-	 self.imformation_about_company;
-	 self.information_about_address;
-	 self.time_work_res;
-	 self.location;
-	 */
-
 	ajax_self.test = function(){
 	}
 
@@ -76,9 +67,7 @@ function manager_page(){
 				}
 
 				param1 = {};
-
 				dataModel.pid.Ajax = 0;
-
 
 				param1.name = "limit";
 				param1.val = 2;

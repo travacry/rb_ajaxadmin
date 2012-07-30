@@ -15,14 +15,23 @@
 	margin-top: 10px;
 }
 
-.conteiner .right .widget63p20px{
-	width: 63%; 
+.conteiner .right .widget59p20px{
+	width: 59%;
 	height: 20px; 
 	margin-top: 10px;
 }
 
 .conteiner .right .widgetw17px{
 	width: 17%; 
+}
+
+.conteiner .right .del_widgetw17px{
+    width: 17%;
+}
+
+.conteiner .right .widgetw20p22px{
+    width: 20%;
+    height: 22px;
 }
 
 .conteiner .right .widgetw98px{
@@ -92,7 +101,7 @@
 	margin-right: 10px;
 }
 
-/* новости */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 
 .conteiner .right .widget_main_news{
 	position: relative;
