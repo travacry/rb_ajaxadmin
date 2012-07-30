@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	/*
-		center: myLatlng – это координаты центра карты
-		zoom – это увеличение при инициализации
-		mapTypeId – тип (политическая, физическая, гибрид)
+		center: myLatlng вЂ“ СЌС‚Рѕ РєРѕРѕСЂРґРёРЅР°С‚С‹ С†РµРЅС‚СЂР° РєР°СЂС‚С‹
+		zoom вЂ“ СЌС‚Рѕ СѓРІРµР»РёС‡РµРЅРёРµ РїСЂРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
+		mapTypeId вЂ“ С‚РёРї (РїРѕР»РёС‚РёС‡РµСЃРєР°СЏ, С„РёР·РёС‡РµСЃРєР°СЏ, РіРёР±СЂРёРґ)
 	*/
 	var myLatlng = new google.maps.LatLng(-34.397, 150.644);
 	var map;
@@ -35,9 +35,9 @@ $(document).ready(function(){
 		map = new google.maps.Map(document.getElementById("map_canvas3"), myOptions);
 	}	
 	/*
-		position – собственно координаты метки
-		map – на какую карту метку поместить
-		title – при наведении мыши будет писать “Hello World!”.
+		position вЂ“ СЃРѕР±СЃС‚РІРµРЅРЅРѕ РєРѕРѕСЂРґРёРЅР°С‚С‹ РјРµС‚РєРё
+		map вЂ“ РЅР° РєР°РєСѓСЋ РєР°СЂС‚Сѓ РјРµС‚РєСѓ РїРѕРјРµСЃС‚РёС‚СЊ
+		title вЂ“ РїСЂРё РЅР°РІРµРґРµРЅРёРё РјС‹С€Рё Р±СѓРґРµС‚ РїРёСЃР°С‚СЊ вЂњHello World!вЂќ.
 	*/
 	
 	var marker = new google.maps.Marker({
@@ -49,4 +49,9 @@ $(document).ready(function(){
 	initialize1();
 	initialize2();
 	//initialize3();
+
+
+
+
+	//
 })
