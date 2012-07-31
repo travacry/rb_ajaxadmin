@@ -189,6 +189,9 @@ function Controller(){
 							$("#foto").html(self.view.manager_el("base", "foto_req", link_pic));
 							$("#textAddress").trigger('update_menu',[ self.slected_id_address, self.selected_id_company ]);
 
+                            $("#btn_save").button();
+                            $("#btn_save").addClass("clssave");
+
 							if (typeof(self.pid.PAGE) != "undefined")
 								self.selectPage(self.pid.PAGE);
 							else
@@ -253,6 +256,291 @@ function Controller(){
 
 	}
 
+    //save info for page
+    //
+    self.saveInfo = function(namePage){
+        //пак для отправки
+        var send_pack = {};
+        switch(namePage){
+            case "Информация":
+                console.log("dataModel.information");
+                console.dir(dataModel.information);
+
+                if (dataModel.information.opening_date != $("#opening_date").val()){
+                    //Дата открытия
+                    send_pack.opening_date = $("#opening_date_right").val();
+                }
+                //пока только ru
+                if (dataModel.information.description_address[dataModel.information.language.main] != $("#description_address_right").val()){
+                    //Описание адреса
+                    send_pack.description = $("#description_address_right").val();
+                }
+                if (dataModel.information.phone.main != $("#phone_main").val()){
+                    //Основной телефон
+                    send_pack.phone = {};
+                    send_pack.phone.main = $("#phone_main").val();
+                }
+                if (dataModel.information.postal_code != $("#postal_code_right").val()){
+                    //Индекс
+                    send_pack.postal_code = $("#postal_code_right").val();
+                }
+                if (dataModel.information.capacity_indoor != $("#capacity_indoor_right").val()){
+                    //Мест в ресторане
+                    send_pack.capacity_indoor = $("#capacity_indoor_right").val();
+                }
+                if (dataModel.information.capacity_outdoor != $("#capacity_outdoor_right").val()){
+                    //Мест на террасе
+                    send_pack.capacity_outdoor = $("#capacity_outdoor_right").val();
+                }
+
+                if (dataModel.information.country[dataModel.information.language.main]  != $("#country_right").val()){
+                    //Страна
+                    send_pack.country = $("#country_right").val();
+                }
+                if (dataModel.information.city[dataModel.information.language.main] != $("#city_right").val()){
+                    //Город
+                    send_pack.city = $("#city_right").val();
+                }
+                if (dataModel.information.subway.main[dataModel.information.language.main] != $("#subway_right").val()){
+                    //Метро
+                    send_pack.subway = {};
+                    send_pack.subway.main = $("#subway_right").val();
+                }
+                if (dataModel.information.street_list[dataModel.information.language.main] != $("#address_right").val()){
+                    //Адрес
+                    send_pack.address.main = $("#address_right").val();
+                }
+
+                send_pack = {};
+                send_pack.Monday = {};
+                send_pack.Tuesday = {};
+                send_pack.Wednesday = {};
+                send_pack.Thursday = {};
+                send_pack.Friday = {};
+                send_pack.Saturday = {};
+                send_pack.Sunday = {};
+
+                if (dataModel.information.time_work.res.Monday.begin != $("#monday_left").val()){
+                    send_pack.Monday.begin = $("#monday_left").val();
+                }
+                if (dataModel.information.time_work.res.Monday.end != $("#monday_right").val()){
+                    send_pack.Monday.end = $("#monday_right").val();
+                }
+                console.log($("#monday_kitchen").val());
+                if (dataModel.information.time_work.res.Monday.kitchen != $("#monday_kitchen").val()){
+                    send_pack.Monday.kitchen = $("#monday_kitchen").val();
+                }
+
+                if (dataModel.information.time_work.res.Tuesday.begin != $("#tuesday_left").val()){
+                    send_pack.Tuesday.begin = $("#tuesday_left").val();
+                }
+                if (dataModel.information.time_work.res.Tuesday.end != $("#tuesday_right").val()){
+                    send_pack.Tuesday.end = $("#tuesday_right").val();
+                }
+                if (dataModel.information.time_work.res.Tuesday.kitchen != $("#tuesday_kitchen").val()){
+                    send_pack.Tuesday.kitchen = $("#tuesday_kitchen").val();
+                }
+
+                if (dataModel.information.time_work.res.Wednesday.begin != $("#wednesday_left").val()){
+                    send_pack.Wednesday.begin = $("#wednesday_left").val();
+                }
+                if (dataModel.information.time_work.res.Wednesday.end != $("#wednesday_right").val()){
+                    send_pack.Wednesday.end = $("#wednesday_right").val();
+                }
+                if (dataModel.information.time_work.res.Wednesday.kitchen != $("#wednesday_kitchen").val()){
+                    send_pack.Wednesday.kitchen = $("#wednesday_kitchen").val();
+                }
+
+                if (dataModel.information.time_work.res.Thursday.begin != $("#thursday_left").val()){
+                    send_pack.Thursday.begin = $("#thursday_left").val();
+                }
+                if (dataModel.information.time_work.res.Thursday.end != $("#thursday_right").val()){
+                    send_pack.Thursday.end = $("#thursday_right").val();
+                }
+                if (dataModel.information.time_work.res.Thursday.kitchen != $("#thursday_kitchen").val()){
+                    send_pack.Thursday.kitchen = $("#thursday_kitchen").val();
+                }
+
+                if (dataModel.information.time_work.res.Friday.begin != $("#friday_left").val()){
+                    send_pack.Friday.begin = $("#friday_left").val();
+                }
+                if (dataModel.information.time_work.res.Friday.end != $("#friday_right").val()){
+                    send_pack.Friday.end = $("#friday_right").val();
+                }
+                if (dataModel.information.time_work.res.Friday.kitchen != $("#friday_kitchen").val()){
+                    send_pack.Friday.kitchen = $("#friday_kitchen").val();
+                }
+
+                if (dataModel.information.time_work.res.Saturday.begin != $("#saturday_left").val()){
+                    send_pack.Saturday.begin = $("#saturday_left").val();
+                }
+                if (dataModel.information.time_work.res.Saturday.end != $("#saturday_right").val()){
+                    send_pack.Saturday.end = $("#saturday_right").val();
+                }
+                if (dataModel.information.time_work.res.Saturday.kitchen != $("#saturday_kitchen").val()){
+                    send_pack.Saturday.kitchen = $("#saturday_kitchen").val();
+                }
+
+                if (dataModel.information.time_work.res.Sunday.begin != $("#sunday_left").val()){
+                    send_pack.Sunday.begin = $("#sunday_left").val();
+                }
+                if (dataModel.information.time_work.res.Sunday.end != $("#sunday_right").val()){
+                    send_pack.Sunday.end = $("#sunday_right").val();
+                }
+                if (dataModel.information.time_work.res.Sunday.kitchen != $("#sunday_kitchen").val()){
+                    send_pack.Sunday.kitchen = $("#sunday_kitchen").val();
+                }
+
+                console.log("send_pack");
+                console.dir(send_pack);
+                //Время работы:
+                /*
+                if (dataModel.information.opening_date != $("#capacity_indoor_right").val()){
+                    //Дата открытия
+                    send_pack.opening_date = $("#capacity_indoor_right").val();
+                }
+                if (dataModel.information.opening_date != $("#capacity_indoor_right").val()){
+                    //Дата открытия
+                    send_pack.opening_date = $("#capacity_indoor_right").val();
+                }
+
+
+                /*
+                if (dataModel.information.opening_date != $("#capacity_indoor_right").val()){
+                    //Дата открытия
+                    var ajaxObj_addressEdit_opening_date = {    id : "opening_date", pack_id : 1,
+                        data :  {   method: "address.edit",  address_id:  self.slected_id_address, opening_date: "" }   }
+                }
+                if (dataModel.information.opening_date != $("#capacity_indoor_right").val()){
+                    //Дата открытия
+                    var ajaxObj_addressEdit_opening_date = {    id : "opening_date", pack_id : 1,
+                        data :  {   method: "address.edit",  address_id:  self.slected_id_address, opening_date: "" }   }
+                }
+                if (dataModel.information.opening_date != $("#capacity_indoor_right").val()){
+                    //Дата открытия
+                    var ajaxObj_addressEdit_opening_date = {    id : "opening_date", pack_id : 1,
+                        data :  {   method: "address.edit",  address_id:  self.slected_id_address, opening_date: "" }   }
+                }
+                if (dataModel.information.opening_date != $("#capacity_indoor_right").val()){
+                    //Дата открытия
+                    var ajaxObj_addressEdit_opening_date = {    id : "opening_date", pack_id : 1,
+                        data :  {   method: "address.edit",  address_id:  self.slected_id_address, opening_date: "" }   }
+                }
+                if (dataModel.information.opening_date != $("#capacity_indoor_right").val()){
+                    //Дата открытия
+                    var ajaxObj_addressEdit_opening_date = {    id : "opening_date", pack_id : 1,
+                        data :  {   method: "address.edit",  address_id:  self.slected_id_address, opening_date: "" }   }
+                }
+
+                */
+
+                //self.managerPage.data
+
+                /*
+                           _right
+
+                //сравнение
+                for(var next )
+                $("#opening_date_right").val();
+                $("#phone_right").val();
+                $("#capacity_indoor_right").val();
+                $("#capacity_outdoor_right").val();
+                $("#country_right").val();
+                $("#city_right").val();
+                $("#subway_right").val();
+                $("#monday_left").val();
+                $("#monday_right").val();
+                $("#monday_kitchen").val();
+                $("#tuesday_left").val();
+                $("#tuesday_right").val();
+                $("#tuesday_kitchen").val();
+                $("#wednesday_left").val();
+                $("#wednesday_right").val();
+                $("#wednesday_kitchen").val();
+                $("#thursday_left").val();
+                $("#thursday_right").val();
+                $("#thursday_kitchen").val();
+                $("#friday_left").val();
+                $("#friday_right").val();
+                $("#friday_kitchen").val();
+                $("#saturday_left").val();
+                $("#saturday_right").val();
+                $("#saturday_kitchen").val();
+                $("#sunday_left").val();
+                $("#sunday_right").val();
+                $("#sunday_kitchen").val();
+                $("#current_longitude").val();
+                $("#current_latitude").val();
+                $("#longitude_address").val();
+                $("#latitude_address").val();
+
+
+                $("#description_address_right").text();
+                $("#address_right").text();
+
+                //Дата открытия
+                var ajaxObj_addressEdit_opening_date = {    id : "opening_date", pack_id : 1,    data :  {   method: "address.edit",  address_id:  self.slected_id_address, opening_date: }   }
+                //Описание адреса
+                var ajaxObj_addressEdit_opening_date = {    id : "description", pack_id : 1,    data :  {   method: "address.edit",  address_id:  self.slected_id_address, description: ""}   }
+                //Широта
+                var ajaxObj_addressEdit_opening_date = {    id : "latitude", pack_id : 1,    data :  {   method: "address.edit",  address_id:  self.slected_id_address, latitude: ""}   }
+                //Долгота
+                var ajaxObj_addressEdit_opening_date = {    id : "longitude", pack_id : 1,    data :  {   method: "address.edit",  address_id:  self.slected_id_address, longitude: ""}   }
+                //Индекс
+                var ajaxObj_addressEdit_opening_date = {    id : "postal_code", pack_id : 1,    data :  {   method: "address.edit",  address_id:  self.slected_id_address, postal_code: ""}   }
+                //Адрес (улица и номер дома)
+                var ajaxObj_addressEdit_opening_date = {    id : "street", pack_id : 1,    data :  {   method: "address.edit",  address_id:  self.slected_id_address, street: ""}   }
+                //Идентификатор страны
+                var ajaxObj_addressEdit_opening_date = {    id : "country_id", pack_id : 1,    data :  {   method: "address.edit",  address_id:  self.slected_id_address, country_id: ""}   }
+                //Идентификатор города
+                var ajaxObj_addressEdit_opening_date = {    id : "city_id", pack_id : 1,    data :  {   method: "address.edit",  address_id:  self.slected_id_address, city_id: ""}   }
+                //Дополнительная информация к адресу??
+                //var ajaxObj_addressEdit_opening_date = {    id : "additional", pack_id : 1,    data :  {   method: "address.edit",  address_id:  self.slected_id_address, additional: ""}   }
+                //Кол-во посадочных мест в ресторане
+                var ajaxObj_addressEdit_opening_date = {    id : "capacity_indoor", pack_id : 1,    data :  {   method: "address.edit",  address_id:  self.slected_id_address, capacity_indoor: ""}   }
+                //Кол-во посадочных мест на террасе
+                var ajaxObj_addressEdit_opening_date = {    id : "capacity_outdoor", pack_id : 1,    data :  {   method: "address.edit",  address_id:  self.slected_id_address, capacity_outdoor: ""}   }
+
+
+
+                var ajax_dr = new ajax_driver();
+                ajax_dr.addPack(1);
+                ajax_dr.addReq(ajaxObj_companyGet_limit1);
+                ajax_dr.addReq(ajaxObj_companyGet_limit2);
+
+                //ajax_dr.setCbOKReq(1,2, function(data){ console.dir(data); });
+                ajax_dr.setCbOkPack(1, function(data){ console.dir(data); });
+                ajax_dr.setCbErrReq(1,1, function(xhr, textStatus){ console.log(textStatus); });
+
+
+                $("#description_company_right").text();
+                */
+            break;
+        }
+    }
+
+
+    /*    display:block;
+     cursor:pointer;
+     width:100px;
+     background:#f1f1f1;
+     border:2px solid #ccc;
+     border-radius:5px;
+     text-align:center;
+     padding:5px;
+     position:fixed;
+     top:2%;
+     right:15%;
+     cursor:pointer;
+     color:#666;
+     text-decoration:none;
+     z-index:100*/
+
+    $("#btn_save").click(function(){
+        //заглушка
+        var namePage = "Информация";
+        self.saveInfo(namePage);
+    })
 
 	//pages
 	self.selectPage = function(namePage){
@@ -312,12 +600,14 @@ function Controller(){
 		var html = new EJS({url: 'templates/information/information.ejs'}).render();
 		$(".right").html(html);
 
-		$("button", ".demo" ).button();
-		$( "#opening_date_right" ).datepicker({
-			showButtonPanel: true
-		});
-
-		//$("#phone_right").
+		$("button").button();
+		$("#opening_date_right").datepicker({
+			showButtonPanel: true,
+            changeMonth: true,
+            changeYear: true,
+            nextText: "",
+            prevText: ""
+        });
 	}
 
 	//страница - отзывы

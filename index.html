@@ -17,12 +17,15 @@
 
 	<link rel="stylesheet" href="js/jquery_ui/development-bundle/themes/base/jquery.ui.theme.css">
     <link rel="stylesheet" href="js/jquery_ui/development-bundle/themes/base/jquery.ui.button.css">
+    <link rel="stylesheet" href="js/jquery_ui/development-bundle/themes/base/jquery.ui.datepicker.css">
+    <!--- <link rel="stylesheet" href="js/jquery_ui/development-bundle/demos/demos.css"> --->
+
 	<script src="js/jquery_ui/development-bundle/jquery-1.7.2.js"></script>
 	<script src="js/jquery_ui/development-bundle/ui/jquery.ui.core.js"></script>
 	<script src="js/jquery_ui/development-bundle/ui/jquery.ui.widget.js"></script>
 	<script src="js/jquery_ui/development-bundle/ui/jquery.ui.datepicker.js"></script>
 	<script src="js/jquery_ui/development-bundle/ui/jquery.ui.button.js"></script>
-	<!--- <link rel="stylesheet" href="js/jquery_ui/development-bundle/demos/demos.css"> --->
+
 	
 	<script type="text/javascript" src="js/selectbox/js/selectbox.js"></script>
 	<link href="js/selectbox/css/selectbox.css" rel="stylesheet" type="text/css" />
@@ -50,6 +53,8 @@
 	--->
 </head>
 <body>
+<!--- <a id="toTop" style="display: block; cursor: pointer; ">^ Наверх ^</a> -->
+    <input type="button" id="btn_save" style="position:fixed;" value="Сохранить">
 	<div class="main">
 		<div class="header">			
 			<h1>&nbsp&nbsp&nbsp&nbsp&nbspRestoBank</h1>
@@ -97,74 +102,11 @@
 			<div class="right">
 				<div class="name_page">Загрузка:</div>
 				<div class="canvas_note_main_loader" >
-				<center><img src="images\loading.gif" alt="Фото" id="foto" class="passe-main_loader"></center></div>
-				
-				<!---
-				<div class="language_selection">
-					<div class="canvas_text">&nbsp&nbsp&nbspЯзык:</div>
-					<div class="canvas_left" align="right">
-					<select disabled="true" style="width: 100px; height: 20px; margin-top: 10px;">
-						<option>RU</option>
-					</select>
-					&nbsp&nbsp
-					</div>
-					<div class="canvas_right" align="right">
-					<select   style="width: 100px; height: 20px; margin-top: 10px;">
-						<option>RU</option>
-						<option>EN</option>
-					</select>
-					&nbsp&nbsp
-					</div>
-				</div>
-				
-					
-					<div id="company">
-						<!---
-						<div class="title">&nbsp&nbsp&nbspИнформация о компании: 
-							<input type="button" value="Сохранить" style="float: right;"></input>
-							<input type="button" value="&nbsp?&nbsp" style="float: right;"></input>
-						</div>	
-						
-						<div class="canvas_note1">
-							<div class="canvas_text">&nbsp&nbsp&nbspНазвание:</div>
-							<div class="canvas_left" style="text-align: center;"><input type="text" style="width: 250px; margin-top: 10px;"></input></div>
-							<div class="canvas_right" style="text-align: center;"><input type="text" style="width: 250px; margin-top: 10px;"></input></div>
-						</div>
-						<div class="canvas_note2">
-							<div class="canvas_text">&nbsp&nbsp&nbspОписание:</div>
-							<div class="canvas_left" style="text-align: center;"><textarea style="width: 250px; height: 100px; margin-top: 10px;"></textarea></div>
-							<div class="canvas_right" style="text-align: center;"><textarea style="width: 250px; height: 100px; margin-top: 10px;"></textarea></div>
-						</div>
-						--->
-					<!---
-					</div>
-					
-						<div class="title">&nbsp&nbsp&nbspИнформация об адресе:</div>
-						<div class="canvas_note">
-							<div class="canvas_text">&nbsp&nbsp&nbspНазвание:</div>
-							<div class="canvas_left" ></div>
-							<div class="canvas_right"></div>
-						</div>						
-					
-					<div id="time_of_restaurant">
-						<div class="title">&nbsp&nbsp&nbspВремя работы ресторана:</div>
-						<div class="canvas_note">
-							<div class="canvas_text">&nbsp&nbsp&nbspНазвание:</div>
-							<div class="canvas_left"></div>
-							<div class="canvas_right"></div>
-						</div>
-					</div>
-					<div id="location">
-						<div class="title">&nbsp&nbsp&nbspМесто расположения:</div>
-						<div class="canvas_note">
-							<div class="canvas_text">&nbsp&nbsp&nbspНазвание:</div>
-							<div class="canvas_mid"></div>
-						</div>
-					</div>
-					--->
-				
+				    <center><img src="images\loading.gif" alt="Фото" id="foto" class="passe-main_loader"></center>
+                </div>
 			</div>
 		</div>
+
 		<!--- end - основной контейнер --->
 	</div>
 </body>

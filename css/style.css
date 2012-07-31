@@ -329,5 +329,11 @@ ul.menu a:active{
 	height: 100%;
 	float: left;
 }
+
+.clssave{
+    top:15px;
+    left:81%;
+    z-index:100
+}
 /* end right */		
 		

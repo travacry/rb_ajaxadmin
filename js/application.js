@@ -1,6 +1,6 @@
 $(function(){
-
 	var ajaxDriver = new ajax_driver();
+
 
 	var controller;
 	init_data = {};
@@ -154,8 +154,7 @@ $(function(){
 						openingYear = "0" + openingYear;
 					
 					val =   openingMonth + "/" + openingDay + "/" + openingYear;
-					console.log(val);
-					
+
 					$("#opening_date_right").datepicker("setDate" , val);
 					$("#opening_date_left").val(val);
 					
@@ -252,9 +251,11 @@ $(function(){
 				
 				//"Телефон"
 				//dataModel[namePage].phone.list
-				val = dataModel.information.phone.main.phone;
-				$("#phone_right").val(val);
-				$("#phone_left").val(val);
+				val = dataModel.information.phone.main;
+                console.log("vaaaaal = ", val);
+
+				$("#phone_main").val(val);
+				$("#phone_left").val();
 
 				$("#add_phone").button({
 					icons: {
@@ -279,21 +280,50 @@ $(function(){
                         html += view_g.manager_widgetEl("phone", "select", "right", init_data["phoneType.get"].response[next].name[language_main]);
                     }
                 }
-                $("#add_phone").click(function() {
+
+                function Phone(){
+                    var self = this;
+                    self.count_btn_del = 0;
                     //type_phone
+                    self.addPhone = function(number){
+                        ++self.count_btn_del;
+                        var selector = document.getElementById("type_phone");
+                        var type = selector.options[selector.selectedIndex].innerHTML;
+                        var class_btn_del = 'canvas_note_small ' + 'del_phone_' + self.count_btn_del;
+
+                        html =  "<div class='" + class_btn_del +"'>";
+                        html += "<div class='canvas_text' style='color: grey;'><p>" + type + ":</p></div>";
+                        html += "<div class='canvas_left' align='left'><input id='phone_right' disabled class='widget80p20px'></input>";
+                        html += "&nbsp";
+                        html += "<button class='btn_del_phone_" + self.count_btn_del + " del_widgetw17px'>Del</button></div>";
+                        html += "<div class='canvas_left' align='left'><input id='phone_left' disabled class='widget98p20px'></input></div></div>";
 
 
-                    html =  "<div class='canvas_note_small'>";
-                    html += "<div class='canvas_text' style='color: grey;'><p>Факс:</p></div>";
-                    html += "<div class='canvas_left' align='left'><input id='phone_right' disabled class='widget80p20px'></input>";
-                    html += "<button id='del_phone' class='del_widgetw17px'>Del</button></div>";
-                    html += "<div class='canvas_left' align='left'><input id='phone_left' disabled class='widget98p20px'></input></div></div>";
+                        $("#ptr_phone").append(html);
 
-                    $("#ptr_phone").append(html);
+                        $(".del_widgetw17px").button();
+                        //canvas_note_small del_phone_1
+                        console.log(".canvas_note_small .del_phone_" + self.count_btn_del);
 
-                    $(".del_widgetw17px").button();
-                    $(".del_widgetw17px").button({  icons: {    primary: "ui-icon ui-icon-minusthick"   }   });
+                        $(".canvas_note_small .del_phone_" + self.count_btn_del).css("border","3px solid red");
+                        $(".btn_del_phone_" + self.count_btn_del + ".del_widgetw17px").css("border","3px solid red");
 
+                        $(".btn_del_phone_" + self.count_btn_del + ".del_widgetw17px").click(function(){
+                            $(".canvas_note_small .del_phone_" + self.count_btn_del).html("");
+                        });
+
+                        $(".del_widgetw17px").button({  icons: {    primary: "ui-icon ui-icon-minusthick"   }   });
+
+                    };
+
+                    self.delPhone = function(type){};
+
+                }
+
+                var additional_phone = new Phone();
+
+                $("#add_phone").click(function() {
+                    additional_phone.addPhone();
                 });
 
 

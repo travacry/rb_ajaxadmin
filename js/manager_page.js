@@ -82,7 +82,7 @@ function manager_page(){
 					ajax_self.intervalID  = setInterval(function(){
 						ajax_self.endCreateModelPage(namePage, data_company, id_address);
 						dataModel.pid.Ajax = 1;
-					} ,2000); //повторение проверки через 30 сек * 3 1.5 мин на ожидание
+					} ,500); //повторение проверки через 30 сек * 3 1.5 мин на ожидание
 				}
 
 				break;
