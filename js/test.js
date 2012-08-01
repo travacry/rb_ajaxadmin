@@ -26,32 +26,17 @@ $(document).ready(function(){
 		map.setMapTypeId(google.maps.MapTypeId.TERRAIN);
 	}
 
-	function initialize3() {
-		var myOptions = {
-			zoom: 8,
-			center: myLatlng,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		}
-		map = new google.maps.Map(document.getElementById("map_canvas3"), myOptions);
-	}	
-	/*
-		position – собственно координаты метки
-		map – на какую карту метку поместить
-		title – при наведении мыши будет писать “Hello World!”.
-	*/
-	
-	var marker = new google.maps.Marker({
-		position: myLatlng,
-		map: map,
-		title:"Hello World!"
-	});
-	
 	initialize1();
 	initialize2();
-	//initialize3();
 
 
 
+    var str = "10/28/2008";//"1227855998";
+    var reg_exp = /^([0-9]{2})[/]([0-9]{2})[/]([0-9]{4})$/;
+    var ObjDate = str.match(reg_exp);
+    var timestamp = Date.UTC(ObjDate[3], ObjDate[1], ObjDate[2]);
+    //console.log(timestamp/1000);
+    //console.dir(ObjStr);
 
 	//
 })

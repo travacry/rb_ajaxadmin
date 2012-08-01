@@ -1,14 +1,20 @@
 $(function(){
 	var ajaxDriver = new ajax_driver();
 
-
 	var controller;
 	init_data = {};
 	var view_g = new View();
 
-	function initPage(){
-        console.log("init_data");
-        console.dir(init_data);
+    var loader = function(){
+        var html = new EJS({url: 'templates/loading/loading.ejs'}).render();
+        $(".right").html(html);
+        //90x90
+        //opacity
+        //$(".left").html(html);
+    }
+    loader();
+
+    function initPage(){
 		controller = new Controller();
 		controller.init.base();
 	}
@@ -36,7 +42,7 @@ $(function(){
 		ajaxDriver.setCbOKReq("init", "countryGet", function(data){ init_data["country.get"] = data; ++count_res; if(count_res == capacity) initPage();   });
 		ajaxDriver.setCbOKReq("init", "subwayGet", function(data){ init_data["subway.get"] = data; ++count_res; if(count_res == capacity) initPage();  });
 		ajaxDriver.setCbOKReq("init", "currencyGet", function(data){ init_data["currency.get"] = data; ++count_res; if(count_res == capacity) initPage(); });
-		ajaxDriver.setCbOKReq("init", "phoneTypeGet", function(data){ init_data["phoneType.get"] = data; console.dir(init_data["phoneType.get"].response);  ++count_res; if(count_res == capacity) initPage();  });
+		ajaxDriver.setCbOKReq("init", "phoneTypeGet", function(data){ init_data["phoneType.get"] = data;  ++count_res; if(count_res == capacity) initPage();  });
 
 		ajaxDriver.setCbErrPack("init", function(xhr, textStatus){} );
 
@@ -204,42 +210,56 @@ $(function(){
 				$("#monday_left").val(val);
 				val = dataModel.information.time_work.res.Monday.end;
 				$("#monday_right").val(val);
-				
+                val = dataModel.information.time_work.res.Monday.kitchen;
+                $("#monday_kitchen").val(val);
+
 				//Вторник
 				val = dataModel.information.time_work.res.Tuesday.begin;
 				$("#tuesday_left").val(val);
 				val = dataModel.information.time_work.res.Tuesday.end;
 				$("#tuesday_right").val(val);
-				
-				//Среда
+                val = dataModel.information.time_work.res.Tuesday.kitchen;
+                $("#tuesday_kitchen").val(val);
+
+                //Среда
 				val = dataModel.information.time_work.res.Wednesday.begin;
 				$("#wednesday_left").val(val);
 				val = dataModel.information.time_work.res.Wednesday.end;
 				$("#wednesday_right").val(val);
-				
-				//Четверг
+                val = dataModel.information.time_work.res.Wednesday.kitchen;
+                $("#wednesday_kitchen").val(val);
+
+                //Четверг
 				val = dataModel.information.time_work.res.Thursday.begin;
 				$("#thursday_left").val(val);
 				val = dataModel.information.time_work.res.Thursday.end;
 				$("#thursday_right").val(val);
-				
-				//Пятница
+                val = dataModel.information.time_work.res.Thursday.kitchen;
+                $("#thursday_kitchen").val(val);
+
+                //Пятница
 				val = dataModel.information.time_work.res.Friday.begin;
 				$("#friday_left").val(val);
 				val = dataModel.information.time_work.res.Friday.end;
 				$("#friday_right").val(val);
-				
-				//Суббота
+                val = dataModel.information.time_work.res.Friday.kitchen;
+                $("#friday_kitchen").val(val);
+
+                //Суббота
 				val = dataModel.information.time_work.res.Saturday.begin;
 				$("#saturday_left").val(val);
 				val = dataModel.information.time_work.res.Saturday.end;
 				$("#saturday_right").val(val);
-				
-				//Воскресенье
+                val = dataModel.information.time_work.res.Saturday.kitchen;
+                $("#saturday_kitchen").val(val);
+
+                //Воскресенье
 				val = dataModel.information.time_work.res.Sunday.begin;
 				$("#sunday_left").val(val);
 				val = dataModel.information.time_work.res.Sunday.end;
 				$("#sunday_right").val(val);
+				val = dataModel.information.time_work.res.Sunday.kitchen    ;
+				$("#sunday_kitchen").val(val);
 
 				//Долгота
 				val = dataModel.information.longitude;

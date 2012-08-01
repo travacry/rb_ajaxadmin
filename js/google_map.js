@@ -68,7 +68,8 @@ function g_map(){
 
 
     google.maps.event.addListener( self.circle, 'click', function(event) {
-            console.dir(event);
+        //console.dir(event);
+        //console.log("lat = ", event.latLng.Ya, "lon = ", event.latLng.Za);
         placeMarker(event.latLng);
     });
 
@@ -80,9 +81,9 @@ function g_map(){
             position: location,
             map: self.map
         });
-
-        $("#latitude_address").val(location["$a"]);
-        $("#longitude_address").val(location["ab"]);
+        //костыль посмотреть апи найти get lat, lon
+        $("#latitude_address").val(location.Ya);
+        $("#longitude_address").val(location.Za);
     }
 
     //установка по координатам сервера + проверка на адрес

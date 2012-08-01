@@ -109,3 +109,14 @@
 	width: 99%; height: 95%; border-radius: 5px; margin: 5px;
 }
 
+.hide_item{
+    opacity: 0;
+}
+
+.show_item{
+    opacity: 1;
+}
+
+.image{
+
+}
