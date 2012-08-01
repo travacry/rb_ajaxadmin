@@ -295,21 +295,19 @@ $(function(){
                         html += "<div class='canvas_text' style='color: grey;'><p>" + type + ":</p></div>";
                         html += "<div class='canvas_left' align='left'><input id='phone_right' disabled class='widget80p20px'></input>";
                         html += "&nbsp";
-                        html += "<button class='btn_del_phone_" + self.count_btn_del + " del_widgetw17px'>Del</button></div>";
+                        html += "<button id='btn_del_phone_" + self.count_btn_del + "' class='del_widgetw17px'>Del</button></div>";
                         html += "<div class='canvas_left' align='left'><input id='phone_left' disabled class='widget98p20px'></input></div></div>";
 
-
                         $("#ptr_phone").append(html);
-
                         $(".del_widgetw17px").button();
-                        //canvas_note_small del_phone_1
-                        console.log(".canvas_note_small .del_phone_" + self.count_btn_del);
-
-                        $(".canvas_note_small .del_phone_" + self.count_btn_del).css("border","3px solid red");
-                        $(".btn_del_phone_" + self.count_btn_del + ".del_widgetw17px").css("border","3px solid red");
-
-                        $(".btn_del_phone_" + self.count_btn_del + ".del_widgetw17px").click(function(){
-                            $(".canvas_note_small .del_phone_" + self.count_btn_del).html("");
+                        //$(".del_phone_" + self.count_btn_del).css("border","3px solid red");
+                        //$("#btn_del_phone_" + self.count_btn_del).css("border","3px solid red");
+                        $("#btn_del_phone_" + self.count_btn_del).bind("click", function(event){
+	                        var parent = $(this).parents();
+	                        var str = ($(parent[1]).attr("class"));
+	                        var str_=str.replace(/\s/,'.');
+	                        $("." + str_).hide();
+	                        $("." + str_).html("");
                         });
 
                         $(".del_widgetw17px").button({  icons: {    primary: "ui-icon ui-icon-minusthick"   }   });
