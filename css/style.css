@@ -67,10 +67,10 @@ h1{
 /* begin left */
 		/* info */
 .conteiner .left .infobar{
-	border: 1px solid #f1f1f1; 	/* Параметры рамки */ 
-	border-radius: 0 0 0 8px; 
-	moz-border-radius: 0 0 0 8px; 
-	webkit-border-radius: 0 0 0 8px; 
+	border: 1px solid #f1f1f1; 	/* Параметры рамки */
+	border-radius: 0 0 0 8px;
+	moz-border-radius: 0 0 0 8px;
+	webkit-border-radius: 0 0 0 8px;
 }
 
 .conteiner .left .infobar select{
