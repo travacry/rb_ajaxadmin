@@ -273,6 +273,7 @@ function Controller(){
                     var ObjDate = str.match(reg_exp);
                     var timestamp = Date.UTC(ObjDate[3], ObjDate[1], ObjDate[2]);
                     send_pack.opening_date = timestamp/1000;
+                    onChangeData = true;
                 }
                 //пока только ru
                 if (dataModel.information.description_address[dataModel.information.language.main] != $("#description_address_right").val()){
@@ -449,6 +450,7 @@ function Controller(){
 
                 console.log("send_pack");
                 console.dir(send_pack);
+                console.dir("onChangeData = ", onChangeData);
 
                 if (onChangeData){
                     var ajax_dr = new ajax_driver();

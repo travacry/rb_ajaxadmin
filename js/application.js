@@ -14,10 +14,69 @@ $(function(){
     }
     loader();
 
+
+    var leftHtml = function(){
+        var html = new EJS({url: 'templates/left/left.ejs'}).render();
+        $(".left").html(html);
+    }
+    leftHtml();
+
+    //  $(".infobar").css("opacity", 0);
+    //$(".infobar").css("background-color", "#D3D3D3");
+
+
+    if (onCookie()){
+        /*
+        var cooking = cooker.get('init_data');
+        console.log("cooking");
+        console.dir(cooking);
+        */
+    }
+
     function initPage(){
-		controller = new Controller();
-		controller.init.base();
+        /*
+        //серелизатор + JSON
+        if (onCookie()){
+
+            var time = 3600 * 12;
+            for (var next in init_data){
+                for (var next_req in init_data[next].response){
+                    for (var next_param in init_data[next].response[next_req]){
+                        if (typeof(init_data[next].response[next_req][next_param]) != "undefined"){
+                            var item = init_data[next].response[next_req][next_param];
+                            var link;
+                            var data;
+                            if (typeof(item) == "object"){
+                                for (var next_par in item){
+                                    //console.log("init" + "^" + next + "^" + next_req + "^" + next_param + "^" + next_par, init_data[next].response[next_req][next_param][next_par]);
+                                    link = "init" + "^" + next + "^" + next_req + "^" + next_param + "^" + next_par;
+                                    data = init_data[next].response[next_req][next_param][next_par];
+                                }
+                            } else {
+                                //console.log("init" + "^" + next + "^" + next_req + "^" + next_param, init_data[next].response[next_req][next_param]);
+                                link = "init" + "^" + next + "^" + next_req + "^" + next_param;
+                                data = init_data[next].response[next_req][next_param];
+                            }
+                        }
+                        //console.log(link, data);
+                        //cooker.set(link, data, time);
+                    }
+                }
+            }
+            var cooking = cooker.get('init');
+            console.log("cooking");
+            console.dir(cooking);
+
+            controller = new Controller();
+            controller.init.base();
+
+        } */
+        controller = new Controller();
+        controller.init.base();
+
 	}
+
+
 
 	function init(){
 		var capacity = 5;
@@ -44,7 +103,11 @@ $(function(){
 		ajaxDriver.setCbOKReq("init", "currencyGet", function(data){ init_data["currency.get"] = data; ++count_res; if(count_res == capacity) initPage(); });
 		ajaxDriver.setCbOKReq("init", "phoneTypeGet", function(data){ init_data["phoneType.get"] = data;  ++count_res; if(count_res == capacity) initPage();  });
 
-		ajaxDriver.setCbErrPack("init", function(xhr, textStatus){} );
+		ajaxDriver.setCbErrReq("init", "cityGet", function(xhr, textStatus){ console.log("cityGet"); } );
+        ajaxDriver.setCbErrReq("init", "countryGet", function(xhr, textStatus){ console.log("countryGet"); } );
+        ajaxDriver.setCbErrReq("init", "subwayGet", function(xhr, textStatus){ console.log("subwayGet"); } );
+        ajaxDriver.setCbErrReq("init", "currencyGet", function(xhr, textStatus){ console.log("currencyGet"); } );
+        ajaxDriver.setCbErrReq("init", "phoneTypeGet", function(xhr, textStatus){ console.log("phoneTypeGet"); } );
 
 		ajaxDriver.setPackTimeout("init", 60000); //3min
 		ajaxDriver.sendPack("init");
@@ -56,15 +119,6 @@ $(function(){
 	
 	//обработка меню
 
-
-	/*
-	var controller = new Controller();
-	controller.init.base();
-	var view_g = new View();*/
-	//id, type, text, list
-	
-	//view_g.manager_widgetEl("language", "select", "right", list);
-	
 	$("#textAddress").on("update_info", function(e, namePage, ObjModelPage){
 		console.log("update_info");
 		switch(namePage){
@@ -147,10 +201,13 @@ $(function(){
 				//Дата открытия
 				val = dataModel.information.opening_date;
 				if (val != null){
-					var opening_date = new Date(val * 1000);
-					var openingDay = opening_date.getDate(); // Считываем число
-					var openingMonth =  opening_date.getMonth(); // Считываем месяц
-					var openingYear = opening_date.getYear() + 1900; // Считываем год
+                    console.log("date =     ", val);
+					var opening_date = new Date(val);
+                    alert(opening_date.toUTCString());
+                    /*
+					var openingDay = opening_date.getUTCDay(); // Считываем число
+					var openingMonth =  opening_date.getUTCMonth(); // Считываем месяц
+					var openingYear = opening_date.getUTCFullYear(); // Считываем год
 						
 					if (openingDay < 9) 
 						openingDay = "0" + openingDay;
@@ -163,7 +220,7 @@ $(function(){
 
 					$("#opening_date_right").datepicker("setDate" , val);
 					$("#opening_date_left").val(val);
-					
+					*/
 				}
 				//Описание(адрес)
 				val = dataModel.information.description_address[language_main];

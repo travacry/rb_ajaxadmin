@@ -29,7 +29,7 @@ function ajax_driver(){
 	self.addPack = function(pack_id){
 		if (typeof(pack_id) != "undefined"){
 			self.pack[pack_id] = {};
-			self.pack[pack_id]._timeout = 180000;
+			self.pack[pack_id]._timeout = 700;
 			self.pack[pack_id]._url = "http://api.restobank.com/api.php";
 			self.pack[pack_id]._type = "POST";
 			self.pack[pack_id]._dataType = "json";
