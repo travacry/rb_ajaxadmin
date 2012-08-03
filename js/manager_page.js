@@ -185,7 +185,6 @@ function manager_page(){
 					dataModel[namePage].site = data_company.site;
 					//Телефон (у компании есть ?)
 					dataModel[namePage].phone = {};
-					dataModel[namePage].phone = data_address.phone;
 					dataModel[namePage].phone.list = {};
 
 					if (typeof(data_address.phone[0]) != "undefined"){
@@ -194,8 +193,10 @@ function manager_page(){
 								//основной телефон
 								dataModel[namePage].phone.main = data_address.phone[next].phone;
 							} else {
+
+
 								for (var next_type in init_data["phoneType.get"].response){
-									if (data_address.phone[next].type == init_data["phoneType.get"].response[next_type].type){
+									if (data_address.phone[next].type == init_data["phoneType.get"].response[next_type].id){
 										var name_type = init_data["phoneType.get"].response[next_type].name[dataModel[namePage].language.main];
 										//все телефоны, -"Основной"
 										dataModel[namePage].phone.list[name_type] = data_address.phone[next].phone;
@@ -242,7 +243,7 @@ function manager_page(){
 					dataModel[namePage].time_work.res.Thursday = {};
 					dataModel[namePage].time_work.res.Thursday.begin = "";
 					dataModel[namePage].time_work.res.Thursday.end = "";
-					dataModel[namePage].time_work.res.Thursday.kitchen = ""
+					dataModel[namePage].time_work.res.Thursday.kitchen = "";
 					dataModel[namePage].time_work.res.Friday = {};
 					dataModel[namePage].time_work.res.Friday.begin = "";
 					dataModel[namePage].time_work.res.Friday.end = "";

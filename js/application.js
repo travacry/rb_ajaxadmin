@@ -199,28 +199,14 @@ $(function(){
 				$("#no_cash_left").val(val);
 				
 				//Дата открытия
-				val = dataModel.information.opening_date;
-				if (val != null){
-                    console.log("date =     ", val);
-					var opening_date = new Date(val);
-                    alert(opening_date.toUTCString());
-                    /*
-					var openingDay = opening_date.getUTCDay(); // Считываем число
-					var openingMonth =  opening_date.getUTCMonth(); // Считываем месяц
-					var openingYear = opening_date.getUTCFullYear(); // Считываем год
-						
-					if (openingDay < 9) 
-						openingDay = "0" + openingDay;
-					if (openingMonth < 9) 
-						openingMonth = "0" + openingMonth;
-					if (openingYear < 9) 
-						openingYear = "0" + openingYear;
-					
-					val =   openingMonth + "/" + openingDay + "/" + openingYear;
+                unix_timestamp = dataModel.information.opening_date;
+				if (unix_timestamp != null){
+                    val = DT.TimestampToStrDate(unix_timestamp);
 
-					$("#opening_date_right").datepicker("setDate" , val);
+					$("#opening_date_right").val(val);
 					$("#opening_date_left").val(val);
-					*/
+
+                    $("#opening_date_right").mask("99/99/9999");
 				}
 				//Описание(адрес)
 				val = dataModel.information.description_address[language_main];
@@ -230,21 +216,24 @@ $(function(){
 				val = dataModel.information.postal_code;
 				$("#postal_code_right").val(val);
 				$("#postal_code_left").val(val);
-				
+                $("#postal_code_right").mask("999999");
+
 				//Всего (посадочных мест)
 				val = dataModel.information.capacity_all;
 				$("#capacity_all_right").val(val);
 				$("#capacity_all_left").val(val);
-				
+
 				//Ресторан
 				val = dataModel.information.capacity_indoor;
 				$("#capacity_indoor_right").val(val);
 				$("#capacity_indoor_left").val(val);
+                $("#capacity_indoor_right").mask("?9999");
 				
 				//Терраса
 				val = dataModel.information.capacity_outdoor;
 				$("#capacity_outdoor_right").val(val);
 				$("#capacity_outdoor_left").val(val);
+                $("#capacity_outdoor_right").mask("?9999");
 				
 				//Страна
 				val = dataModel.information.country[language_main];
@@ -327,12 +316,22 @@ $(function(){
 				$("#current_latitude").val(val);
 				
 				//"Телефон"
+                var additional_phone = new Phone();
 				//dataModel[namePage].phone.list
 				val = dataModel.information.phone.main;
-                console.log("vaaaaal = ", val);
+                console.dir(dataModel.information.phone.list);
+
+                for(var next in dataModel.information.phone.list){
+                    if (typeof(dataModel.information.phone.list[next]) != "undefined"){
+                        additional_phone.addPhone(dataModel.information.phone.list[next], next);
+                    }
+                }
 
 				$("#phone_main").val(val);
-				$("#phone_left").val();
+				$("#phone_main_right").val(val);
+                $("#phone_right").mask("+7(999) 999-9999");
+
+                $("#phone_main").mask("+7(999) 999-9999");
 
 				$("#add_phone").button({
 					icons: {
@@ -346,6 +345,62 @@ $(function(){
 					}
 				});
 
+                function Phone(){
+                    var self = this;
+                    self.count_btn_del = 0;
+                    //type_phone
+                    self.addPhone = function(number, type){
+
+                        if (typeof(number) == "undefined"){
+                            var reg = /[\(,\),\ ,\-,\[,\]]/g;
+                            self.phone_right_val = ($("#phone_right").val() + "").replace(reg, "");
+                        } else
+                            self.phone_right_val = number;
+
+                        if(self.phone_right_val != ""){
+                            ++self.count_btn_del;
+                            if (typeof(type) == "undefined"){
+                                var selector = document.getElementById("type_phone");
+                                var type = selector.options[selector.selectedIndex].innerHTML;
+                            }
+
+                            var class_btn_del = 'canvas_note_small ' + 'del_phone_' + self.count_btn_del;
+
+                            html =  "<div class='" + class_btn_del +"'>";
+                            html += "<div class='canvas_text' style='color: grey;'><p>" + type + ":</p></div>";
+                            html += "<div class='canvas_left' align='left'><input id='phone_right_" + self.count_btn_del + "' disabled class='widget80p20px'></input>";
+                            html += "&nbsp";
+                            html += "<button id='btn_del_phone_" + self.count_btn_del + "' class='del_widgetw17px'>Del</button></div>";
+                            html += "<div class='canvas_left' align='left'><input id='phone_left_" + self.count_btn_del + "' disabled class='widget98p20px'></input></div></div>";
+
+                            $("#ptr_phone").append(html);
+                            $(".del_widgetw17px").button();
+                            //$(".del_phone_" + self.count_btn_del).css("border","3px solid red");
+                            //$("#btn_del_phone_" + self.count_btn_del).css("border","3px solid red");
+
+                            $("#phone_right_" + self.count_btn_del).val(self.phone_right_val);
+                            $("#phone_left_" + self.count_btn_del).val(self.phone_right_val);
+                            $("#phone_right").val("");
+                        }
+
+                        $("#btn_del_phone_" + self.count_btn_del).bind("click", function(event){
+                            var parent = $(this).parents();
+                            var str = ($(parent[1]).attr("class"));
+                            var str_=str.replace(/\s/,'.');
+                            $("." + str_).hide();
+                            $("." + str_).html("");
+                        });
+
+                        $(".del_widgetw17px").button({  icons: {    primary: "ui-icon ui-icon-minusthick"   }   });
+
+                    };
+
+                    self.delPhone = function(type){};
+
+                }
+
+
+
                 var html = "";
                 var index_main;
                 var list_type_phone = {};
@@ -358,44 +413,7 @@ $(function(){
                     }
                 }
 
-                function Phone(){
-                    var self = this;
-                    self.count_btn_del = 0;
-                    //type_phone
-                    self.addPhone = function(number){
-                        ++self.count_btn_del;
-                        var selector = document.getElementById("type_phone");
-                        var type = selector.options[selector.selectedIndex].innerHTML;
-                        var class_btn_del = 'canvas_note_small ' + 'del_phone_' + self.count_btn_del;
 
-                        html =  "<div class='" + class_btn_del +"'>";
-                        html += "<div class='canvas_text' style='color: grey;'><p>" + type + ":</p></div>";
-                        html += "<div class='canvas_left' align='left'><input id='phone_right' disabled class='widget80p20px'></input>";
-                        html += "&nbsp";
-                        html += "<button id='btn_del_phone_" + self.count_btn_del + "' class='del_widgetw17px'>Del</button></div>";
-                        html += "<div class='canvas_left' align='left'><input id='phone_left' disabled class='widget98p20px'></input></div></div>";
-
-                        $("#ptr_phone").append(html);
-                        $(".del_widgetw17px").button();
-                        //$(".del_phone_" + self.count_btn_del).css("border","3px solid red");
-                        //$("#btn_del_phone_" + self.count_btn_del).css("border","3px solid red");
-                        $("#btn_del_phone_" + self.count_btn_del).bind("click", function(event){
-	                        var parent = $(this).parents();
-	                        var str = ($(parent[1]).attr("class"));
-	                        var str_=str.replace(/\s/,'.');
-	                        $("." + str_).hide();
-	                        $("." + str_).html("");
-                        });
-
-                        $(".del_widgetw17px").button({  icons: {    primary: "ui-icon ui-icon-minusthick"   }   });
-
-                    };
-
-                    self.delPhone = function(type){};
-
-                }
-
-                var additional_phone = new Phone();
 
                 $("#add_phone").click(function() {
                     additional_phone.addPhone();

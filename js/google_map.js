@@ -14,7 +14,7 @@ function g_map(){
             zoom: 12,
             center: self.thePoint,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            scaleControl: true,
+            scaleControl: false,
             scrollwheel: false
         }
         self.map = new google.maps.Map(document.getElementById("map_canvas"), self.mapOpts);

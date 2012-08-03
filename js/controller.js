@@ -256,6 +256,7 @@ function Controller(){
 
 	}
 
+
     //save info for page
     //
     self.saveInfo = function(namePage){
@@ -269,10 +270,7 @@ function Controller(){
                 if (dataModel.information.opening_date != $("#opening_date_right").val()){
                     //Дата открытия  (UTC)
                     var str = $("#opening_date_right").val();
-                    var reg_exp = /^([0-9]{2})[/]([0-9]{2})[/]([0-9]{4})$/;
-                    var ObjDate = str.match(reg_exp);
-                    var timestamp = Date.UTC(ObjDate[3], ObjDate[1], ObjDate[2]);
-                    send_pack.opening_date = timestamp/1000;
+                    send_pack.opening_date = DT.StrDateToTimestamp(str);
                     onChangeData = true;
                 }
                 //пока только ru
