@@ -1,31 +1,20 @@
 $(function(){
-/*
- <div id="city_get"></div>
- <div id="country_get"></div>
- <div id="subway_get"></div>
- <div id="currency_get"></div>
- <div id="phoneType_get"></div>
+/* Инициализация, загрузка всех данных. */
 
- <div id="address_get"></div>
- <div id="company_get"></div>
- <div id="addressRating_get"></div>
- <div id="category_get"></div>
- <div id="dish_get"></div>
- <div id="dishRating_get"></div>
- <div id="dishReview_get"></div>
- <div id="language_get"></div>
- <div id="like_get"></div>
- <div id="member_get"></div>
- <div id="news.get"></div>
- <div id="offer_get"></div>
- <div id="option_get"></div>
- <div id="promo_get"></div>
- <div id="unit_get"></div>
+var timeout_fixed = 60000;
+var timeout_mainmenu_get_ids = 70000;
+var timeout_mainmenu = 60000;
+var timeout_dynamic = 60000;
 
-*/
+var procent = (timeout_fixed + timeout_mainmenu_get_ids + timeout_mainmenu + timeout_dynamic)/100;
+//Для лоадера
+var timeout_fixed_poc_loaderbar = timeout_fixed/procent;
+var timeout_ids_poc_loaderbar = timeout_mainmenu_get_ids/procent;
+var timeout_mainmenu_poc_loaderbar = timeout_mainmenu/procent;
+var timeout_dynamic_poc_loaderbar = timeout_dynamic/procent;
+
 var fixed = {};
 function getStaticData(){
-
     var ajaxDriver = new ajax_driver();
 
     var count_res = 0;
@@ -46,11 +35,11 @@ function getStaticData(){
     ajaxDriver.addReq(ajaxObj_phoneTypeGet);
 
     //ajax_dr.setCbOKReq(1,2, function(data){ console.dir(data); });
-    ajaxDriver.setCbOKReq("fixed", "cityGet", function(data){ fixed["city.get"] = data; ++count_res; if(count_res == capacity) initPage(); });
-    ajaxDriver.setCbOKReq("fixed", "countryGet", function(data){ fixed["country.get"] = data; ++count_res; if(count_res == capacity) initPage();   });
-    ajaxDriver.setCbOKReq("fixed", "subwayGet", function(data){ fixed["subway.get"] = data; ++count_res; if(count_res == capacity) initPage();  });
-    ajaxDriver.setCbOKReq("fixed", "currencyGet", function(data){ fixed["currency.get"] = data; ++count_res; if(count_res == capacity) initPage(); });
-    ajaxDriver.setCbOKReq("fixed", "phoneTypeGet", function(data){ fixed["phoneType.get"] = data;  ++count_res; if(count_res == capacity) initPage();  });
+    ajaxDriver.setCbOKReq("fixed", "cityGet", function(data){ saveData(data, "city.get"); });
+    ajaxDriver.setCbOKReq("fixed", "countryGet", function(data){ saveData(data, "country.get");   });
+    ajaxDriver.setCbOKReq("fixed", "subwayGet", function(data){ saveData(data, "subway.get");  });
+    ajaxDriver.setCbOKReq("fixed", "currencyGet", function(data){ saveData(data, "currency.get"); });
+    ajaxDriver.setCbOKReq("fixed", "phoneTypeGet", function(data){ saveData(data, "phoneType.get");  });
 
     ajaxDriver.setCbErrReq("fixed", "cityGet", function(xhr, textStatus){ console.log("cityGet"); } );
     ajaxDriver.setCbErrReq("fixed", "countryGet", function(xhr, textStatus){ console.log("countryGet"); } );
@@ -58,37 +47,106 @@ function getStaticData(){
     ajaxDriver.setCbErrReq("fixed", "currencyGet", function(xhr, textStatus){ console.log("currencyGet"); } );
     ajaxDriver.setCbErrReq("fixed", "phoneTypeGet", function(xhr, textStatus){ console.log("phoneTypeGet"); } );
 
-    ajaxDriver.setPackTimeout("fixed", 60000); //3min
+    ajaxDriver.setPackTimeout("fixed", timeout_fixed); //2min
     ajaxDriver.sendPack("fixed");
+
+	function saveData(data, name_param){
+		if (typeof(data.error) == "undefined"){
+			fixed[name_param + ""] = data;
+			++count_res;
+			if(count_res == capacity) initStatic();
+		} else {
+			console.log("error : ", name_param, "msg : ", data.error.message);
+		}
+	}
 }
 
 getStaticData();
 
-function initPage(){
+function initStatic(){
     console.log("staticComplite");
     console.dir(fixed);
-    getNext();
+	getMainMenuData();
+}
+
+var mainmenu = {};
+function getMainMenuData(){
+
+	var ajaxDriver = new ajax_driver();
+
+	ajaxDriver.addPack("mainmenu");
+	var ajaxObj = {    id : "companyGet", pack_id : "mainmenu",    data :  {   method: "company.get", limit: 2}   }
+	ajaxDriver.addReq(ajaxObj);
+	ajaxDriver.setCbOKReq("mainmenu", "companyGet", function(data){ setIdsAddress(data, "company.get"); });
+	ajaxDriver.setCbErrReq("mainmenu", "companyGet", function(xhr, textStatus){ console.log("companyget"); } );
+
+	ajaxDriver.setPackTimeout("mainmenu", timeout_mainmenu_get_ids); //2min
+	ajaxDriver.sendPack("mainmenu");
+
+	var count_res = 0;
+	var capacity = 2;
+
+	function setIdsAddress(data, name_param){
+		if (typeof(data.error) == "undefined"){
+			var ids = "";
+			for (var next in data.response){
+				ids += data.response[next].id;
+				ids += ",";
+			}
+			if( ids != null && ids.length > 1 )
+				ids = ids.substring(0, ids.length - 1);
+
+			var ajaxObj = {    id : "addressGet", pack_id : "mainmenu",    data :  {   method: "address.get", company_ids: ids }   }
+
+			ajaxDriver.addReq(ajaxObj);
+			ajaxDriver.setCbOKReq("mainmenu", "addressGet", function(data){ saveData(data, "address.get"); });
+			ajaxDriver.setCbErrReq("mainmenu", "addressGet", function(xhr, textStatus){ console.log("companyget"); } );
+
+			ajaxDriver.setCbOKReq("mainmenu", "companyGet", function(data){ saveData(data, "company.get"); });
+			ajaxDriver.setCbErrReq("mainmenu", "companyGet", function(xhr, textStatus){ console.log("companyget"); } );
+
+			ajaxDriver.setPackTimeout("mainmenu", timeout_mainmenu); //2min
+			ajaxDriver.sendPack("mainmenu");
+		} else {
+			console.log("error : ", name_param, "msg : ", data.error.message);
+		}
+	}
+	function saveData(data, name_param){
+		if (typeof(data.error) == "undefined"){
+			mainmenu[name_param + ""] = data;
+			++count_res;
+			if(count_res == capacity) initMainMenuData();
+		} else {
+			console.log("error : ", name_param, "msg : ", data.error.message);
+		}
+	}
+}
+
+function initMainMenuData(){
+	console.log("mainmenu");
+	console.dir(mainmenu);
+	getDynamicData();
 }
 
 var dynamic = {};
-function getNext(){
+function getDynamicData(){
+	var count_res = 0;
+	var capacity = 1;
+
     var ajaxDriver = new ajax_driver();
 
     ajaxDriver.addPack("dynamic");
 
-    var ajaxObj = {    id : "addressGet", pack_id : "dynamic",    data :  {   method: "address.get", company_ids: 1 }   }
-    ajaxDriver.addReq(ajaxObj);
-    var ajaxObj = {    id : "companyGet", pack_id : "dynamic",    data :  {   method: "company.get", limit: 1}   }
-    ajaxDriver.addReq(ajaxObj);
     //var ajaxObj = {    id : "addressRatingGet", pack_id : "dynamic",    data :  {   method: "addressRating.get", address_id: 2 }   } // -
     //ajaxDriver.addReq(ajaxObj);
     var ajaxObj = {    id : "categoryGet", pack_id : "dynamic",    data :  {   method: "category.get" }   }
     ajaxDriver.addReq(ajaxObj);
     //var ajaxObj = {    id : "dish_get", pack_id : "dynamic",    data :  {   method: "dish.get" }   }  // -
     //ajaxDriver.addReq(ajaxObj);
-    var ajaxObj = {    id : "dishRating_get", pack_id : "dynamic",    data :  {   method: "dishRating.get"}   }
-    ajaxDriver.addReq(ajaxObj);
-    /*
+
+    //var ajaxObj = {    id : "dishRatingGet", pack_id : "dynamic",    data :  {   method: "dishRating.get"}   }
+    //ajaxDriver.addReq(ajaxObj);
+/*
     //var ajaxObj = {    id : "dishReview_get", pack_id : "dynamic",    data :  {   method: "dishReview.get"}   }  // -
     //ajaxDriver.addReq(ajaxObj);
     var ajaxObj = {    id : "language_get", pack_id : "dynamic",    data :  {   method: "language.get"}   }
@@ -109,10 +167,8 @@ function getNext(){
     ajaxDriver.addReq(ajaxObj);
     */
 
-    ajaxDriver.setCbOKReq("dynamic", "addressGet", function(data){ dynamic["address.get"] = data; console.log("return(address) = "); console.dir(data.response);  });
-    ajaxDriver.setCbOKReq("dynamic", "companyGet", function(data){ dynamic["company.get"] = data; console.log("return(company) = "); console.dir(data.response); });
-    ajaxDriver.setCbOKReq("dynamic", "categoryGet", function(data){ dynamic["category.get"] = data; console.log("return(category) = "); console.dir(data.response); });
-    ajaxDriver.setCbOKReq("dynamic", "dishRatingGet", function(data){ dynamic["dishRating.get"] = data; console.log("return(dishRating) = "); console.dir(data.response); });
+    ajaxDriver.setCbOKReq("dynamic", "categoryGet", function(data){ saveData(data, "category.get"); });
+    //ajaxDriver.setCbOKReq("dynamic", "dishRatingGet", function(data){ saveData(data, "dishRating.get"); });
     /*
     ajaxDriver.setCbOKReq("dynamic", "languageGet", function(data){ dynamic["language.get"] = data;   });
     ajaxDriver.setCbOKReq("dynamic", "newsGet", function(data){ dynamic["news.get"] = data;   });
@@ -121,10 +177,9 @@ function getNext(){
     ajaxDriver.setCbOKReq("dynamic", "promoGet", function(data){ dynamic["promo.get"] = data;   });
     ajaxDriver.setCbOKReq("dynamic", "unitGet", function(data){ dynamic["unit.get"] = data;   });
     */
-    ajaxDriver.setCbErrReq("dynamic", "addressGet", function(xhr, textStatus){ console.log("address"); } );
-    ajaxDriver.setCbErrReq("dynamic", "companyGet", function(xhr, textStatus){ console.log("company"); } );
+
     ajaxDriver.setCbErrReq("dynamic", "categoryGet", function(xhr, textStatus){ console.log("category"); } );
-    ajaxDriver.setCbErrReq("dynamic", "dishRatingGet", function(xhr, textStatus){ console.log("dishRating"); } );
+    //ajaxDriver.setCbErrReq("dynamic", "dishRatingGet", function(xhr, textStatus){ console.log("dishRating"); } );
     /*
     ajaxDriver.setCbErrReq("dynamic", "languageGet", function(xhr, textStatus){ console.log("language"); } );
     ajaxDriver.setCbErrReq("dynamic", "newsGet", function(xhr, textStatus){ console.log("news"); } );
@@ -134,7 +189,22 @@ function getNext(){
     ajaxDriver.setCbErrReq("dynamic", "unitGet", function(xhr, textStatus){ console.log("unit"); } );
     */
 
-    ajaxDriver.setPackTimeout("dynamic", 60000); //3min
+    ajaxDriver.setPackTimeout("dynamic", timeout_dynamic);
     ajaxDriver.sendPack("dynamic");
+
+	function saveData(data, name_param){
+		if (typeof(data.error) == "undefined"){
+			dynamic[name_param + ""] = data;
+			++count_res;
+			if(count_res == capacity) initDynamic();
+		} else {
+			console.log("error : ", name_param, "msg : ", data.error.message);
+		}
+	}
+}
+
+function initDynamic(){
+	console.log("dynamicComplite");
+	console.dir(dynamic);
 }
 })

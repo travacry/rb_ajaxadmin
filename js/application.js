@@ -16,7 +16,7 @@ $(function(){
 
 
     var leftHtml = function(){
-        var html = new EJS({url: 'templates/left/left.ejs'}).render();
+        var html = new EJS({url: 'templates/app_menu/app_menu.ejs'}).render();
         $(".left").html(html);
     }
     leftHtml();

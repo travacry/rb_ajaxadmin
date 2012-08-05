@@ -94,6 +94,7 @@ function Controller(){
 						}
 
 						self.selected_id_company = list_id[name_company];
+						console.log("self.selected_id_company = ", self.selected_id_company);
 						$("#logo").html(self.view.manager_el("base","logo_req", self.list_logo["" + name_company]));
 
 					});
