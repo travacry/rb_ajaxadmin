@@ -2,11 +2,11 @@
 	.ui-progressbar .ui-progressbar-value { background-image: url(images/jquery/pbar-ani.gif); }
 </style>
 <div style=<%="'width: " + options.width + "; height: " + options.height + " ; background-color: #D3D3D3; opacity: 0.8; display: table-cell; vertical-align: middle;'" %> >
-<div class="demo"  style="width: 100%;">
+<div style="width: 100%;">
 <span>
 	<% if (options.type == "cyclic") { %>
-	<div class="name_page" style="margin: 0 auto; width: 350px; text-align: center; font-style: italic; font-size: 16pt">Загрузка:</div>
-	<div class="canvas_note_main_loader" style="margin: 0 auto; width: 350px;">
+	<div style="margin: 0 auto; width: 350px; text-align: center; font-style: italic; font-size: 16pt">Загрузка:</div>
+	<div style="margin: 0 auto; width: 350px;">
 	    <img src="images\page-loader.gif" alt="Фото" id="foto" class="passe-main_loader" style="width: 100%;">
 		<div class="msg_loader" style="margin: 0 auto; width: 350px; text-align: center; font-style: serif; font-size: 10pt"><%= options.msg %></div>
 	</div>

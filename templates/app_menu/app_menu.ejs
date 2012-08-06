@@ -1,27 +1,39 @@
+<% if (type == "loader") { %>
+<div class="demo" style=<%="'width: " + options.width + ";'" %> >
+    <div class="infobar" style="background-color: #D3D3D3; opacity: 0.6;">
+    </div>
+</div>
+<% } else if (type == "update") {%>
 <div class="demo" style=<%="'width: " + options.width + "; height: " + options.height + ";'" %> >
     <div class="infobar">
         <div class="icomin"><div id="priceLevel">$$$$$</div></div>
+        <div id="company_logo">
+        <img src="js/test_cr_plagins/img/question_mark.jpg" alt="Логотип"  class="passe-partout"></div>
 
-        <img src="js/test_cr_plagins/img/question_mark.jpg" alt="Логотип" id="logo" class="passe-partout">
-        <div id="logo"></div>
-        <div class="subway"><select id="idCompany"></select></div>
+        <div class="subway"><select id="listCompany"></select></div>
         <div class="icomin">
-	        <div id="favourite" style=" font-style: serif; font-size: 10pt; float: left;"><img class="img_favourite" src="images/heartred.png" style="width: 10px; height: 10px;">____</div>
+	        <div style="font-style: serif; font-size: 10pt; float: center; top: 10px;"><img class="img_favourite" src="images/heartred.png" style="width: 10px; height: 10px;"> <span id="favourite"></span></div>
         </div>
         <div id="foto"></div>
-	        <img src="js/test_cr_plagins/img/question_mark.jpg" alt="Логотип" id="logo" class="passe-partout">
-            <div class="subway"><select id="textAddress"></select></div>
+            <div id="address_logo">
+	        <img src="js/test_cr_plagins/img/question_mark.jpg" alt="Логотип" class="passe-partout"></div>
+            <div class="subway"><select id="listAddress"></select></div>
 
         <div style=" font-style: serif; font-size: 10pt; float: left; padding-top: 5px; padding-left: 5px;">
-	        <div id="address_subway" class="subway" >Метро: __________</div>
-	        <div id="address_rating" class="subway">Рейтинг: ____</div>
-	        <div id="rating_count" class="subway">Поситители: ____</div>
-	        <div id="address_count_review" class="subway">Кол-во отзывов: ____</div>
+	        <div class="subway" >Метро: <span id="address_subway"></span></div>
+	        <div class="subway">Рейтинг: <span id="address_rating"></span></div>
+	        <div class="subway">Поситители: <span id="rating_count"></span></div>
+	        <div class="subway">Кол-во отзывов: <span id="address_count_review"></span></div>
 	    </div>
     </div>
+<% } %>
 	<br>
     <div class="menubar">
-        <ul class="menu">
+        <% if (type == "loader") { %>
+            <ul class="menu" style="opacity: 0.6;">
+        <% } else if (type == "update") {%>
+            <ul class="menu" style="opacity: 1;">
+        <% } %>
 	        <li>
 	            <a id="m_news" href="#">Новости</a>
 	        </li>

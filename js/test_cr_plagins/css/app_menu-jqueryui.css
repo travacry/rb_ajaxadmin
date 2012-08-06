@@ -1,6 +1,6 @@
 
 	.infobar{
-	border: 1px solid #000; 	/* Параметры рамки */
+	border: 1px solid #000; 	/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ */
 	border-radius: 0 0 0 8px;
 	moz-border-radius: 0 0 0 8px;
 	webkit-border-radius: 0 0 0 8px;
@@ -24,12 +24,11 @@
 	}
 
 	.infobar .icomin #favourite{
-
-	top: 10px;
+	    top: 10px;
 	}
 
 	.infobar .passe-partout {
-	background: #f0f0f0; 		/* Цвет фона  паспарту */
+	background: #f0f0f0; 		/* пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 	width: 90px; height: 90px;
 	margin: 5px 0px 5px 5px;
 	border-radius: 4px;
@@ -55,16 +54,16 @@
 		padding: 20px 15px 15px 5px;
 	}
 	.conteiner .left ul.menu{
-		list-style: none;				/* удаляет маркер */
-		/* border-top: 1px solid #000;		 линия сверху */
+		list-style: none;				/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
+		/* border-top: 1px solid #000;		 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
 	}
 	.conteiner .left ul.menu li {
 		width: 120px;
-		/* border-bottom: 1px solid #666;  кнопки */
+		/* border-bottom: 1px solid #666;  пїЅпїЅпїЅпїЅпїЅпїЅ */
 	}
 
 	ul.menu a, ul.menu a:visited {
-		padding: 5px 5px 5px 30px;	/* группировка */
+		padding: 5px 5px 5px 30px;	/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 		display: block;
 		width: 140px;
 		text-decoration: none;
@@ -73,15 +72,15 @@
 	}
 
 	ul.menu a:hover, ul.menu a:focus {
-		background: #f1f1f1;	/* изменяет цвет текста и фона при навигации */
+		background: #f1f1f1;	/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 		color: #6da3d4;
 	}
 
 	ul.menu a:active{
-		font-size: 15px; /* при клике */
+		font-size: 15px; /* пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ */
 	}
 
 	.infobar .icomin #priceLevel{
-		float: left;
+		float: center;
 	}
 	/* end left */

@@ -4,8 +4,8 @@
 
 			options = $.extend({
 				select_class: ".right",
-				width: "700px",
-				height: "300px",
+				width: "1061px",
+				height: "500px",
 				type: "percent",
 				percent: 0,
 				msg: ""
@@ -75,10 +75,11 @@
 })(jQuery);
 
 $(function(){
-	$("#loader_jquery").loader_jquery();
+	$(".right").loader_jquery();
+    //$("#loader_jquery").loader_jquery();
 	//$("#loader_jquery").loader_jquery({ type: "cyclic" });
 	//$("#loader_jquery").loader_jquery("setMsg", "hi");
 	//$("#loader_jquery").loader_jquery("update", 10);
-	$("#loader_jquery").loader_jquery("update", 90);
+	$(".right").loader_jquery("update", 90);
 
 })

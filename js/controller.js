@@ -74,14 +74,14 @@ function Controller(){
 					//список логотипов
 					self.list_logo[name_company] = data.response[next].logo["114"];
 					//список копманий
-					$("#idCompany").append('<option>' + name_company + '</option>');
+					$("#listCompany").append('<option>' + name_company + '</option>');
 					//list id
 					list_id[name_company] = data.response[next].id;
 				}
 
-				$("#idCompany").change(function(){
+				$("#listCompany").change(function(){
 					var name_company = "";
-					$("#idCompany option:selected").each(function () {
+					$("#listCompany option:selected").each(function () {
 						name_company += $(this).text();
 						//save change company
 						for(next in data.response){
@@ -121,7 +121,7 @@ function Controller(){
 		self.loadAddress = function(change_id){
 
 			$("#foto").html(self.view.manager_el("base","foto"));
-			$("#textAddress").html("");
+			$("#listAddress").html("");
 			$.ajax({
 				type: "POST",
 				url: "http://api.restobank.com/api.php",
@@ -159,12 +159,12 @@ function Controller(){
 						self.list_address_name["" + next] = data.response[next].address.street[self.language];
 						//адреса
 						var name_address = data.response[next].address.street[self.language];
-						$("#textAddress").append('<option>' + name_address + '</option>');
+						$("#listAddress").append('<option>' + name_address + '</option>');
 					}
 
-					$("#textAddress").change(function(){
+					$("#listAddress").change(function(){
 						var name_address = "";
-						$("#textAddress option:selected").each(function () {
+						$("#listAddress option:selected").each(function () {
 							name_address = $(this).text();
 							//получение координат по адресу
 							self.getCoordAddress(name_address);
@@ -188,7 +188,7 @@ function Controller(){
 							$("#address_count_review").text("Кол-во отзывов: " + self.address_count_review);
 
 							$("#foto").html(self.view.manager_el("base", "foto_req", link_pic));
-							$("#textAddress").trigger('update_menu',[ self.slected_id_address, self.selected_id_company ]);
+							$("#listAddress").trigger('update_menu',[ self.slected_id_address, self.selected_id_company ]);
 
                             $("#btn_save").button();
                             $("#btn_save").addClass("clssave");
@@ -201,8 +201,8 @@ function Controller(){
 						})
 					});
 
-					$("#textAddress").trigger('change');
-					$("#textAddress").trigger('update_page',[ self.slected_id_address, self.selected_id_company ]);
+					$("#listAddress").trigger('change');
+					$("#listAddress").trigger('update_page',[ self.slected_id_address, self.selected_id_company ]);
 
 				}
 			})
