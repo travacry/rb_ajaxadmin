@@ -1,0 +1,71 @@
+﻿.right{
+    border: 1px solid #0E0E0E;
+    font-size: 12px;
+}
+.conteiner .right .canvas_text{
+	width: 18%;
+	height: 100%;
+	float: left;
+}
+
+.conteiner .right .canvas_left{
+	width: 41%;
+
+	height: 100%;
+	float: left;
+	margin-left: 0px;
+}
+
+.conteiner .right .canvas_right{
+	width: 41%;
+	height: 100%;
+	float: left;
+}
+
+.conteiner .right .canvas_mid{
+	width: 82%;
+
+	height: 100%;
+	float: left;
+}
+
+.conteiner .right .canvas_note{
+	width: 1061px;
+	height: 50px;
+}
+
+.conteiner .right .name_page{
+	border: 1px solid #666;
+	text-align: center;
+	height: 20px;
+}
+
+.conteiner .right .language_selection{
+	text-align: left;
+	height: 32px;
+	width: 1061px;
+}
+
+.conteiner .right   .title{
+	text-align: left;
+	height: 20px;
+
+}
+.conteiner .right .canvas_note_small{
+	height: 32px;
+}
+.conteiner .right .canvas_note_big{
+	height: 150px;
+}
+
+.conteiner .right .canvas_note_mid{
+	height: 100px;
+}
+
+.conteiner .right .canvas_note_mid_news{
+	height: 110px;
+}
+
+.conteiner .right .canvas_note_veryBid{
+	height: 350px;
+}

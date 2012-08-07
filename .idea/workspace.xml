@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="760d124a-e043-4002-a8e2-fab5fa5fa04e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/test_cr_plagins/info-jqueryui.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/page-loader.gif" afterPath="$PROJECT_DIR$/images/page-loader.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/widget_page.css" afterPath="$PROJECT_DIR$/css/widget_page.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw.html" afterPath="$PROJECT_DIR$/cw.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index_.html" afterPath="$PROJECT_DIR$/index_.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/loaddata.js" afterPath="$PROJECT_DIR$/js/loaddata.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/test_cr_plagins/app_menu-jqueryui.js" afterPath="$PROJECT_DIR$/js/test_cr_plagins/app_menu-jqueryui.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/test_cr_plagins/loader-jquery.js" afterPath="$PROJECT_DIR$/js/test_cr_plagins/loader-jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/loading/loading.ejs" afterPath="$PROJECT_DIR$/templates/loading/loading.ejs" />
-    </list>
+    <list default="true" readonly="true" id="760d124a-e043-4002-a8e2-fab5fa5fa04e" name="Default" comment="" />
     <ignored path="www.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -89,7 +79,7 @@
       <file leaf-file-name="loaddata.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/loaddata.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="239" column="92" selection-start="10450" selection-end="10450" vertical-scroll-proportion="0.6217494">
+            <state line="242" column="122" selection-start="10530" selection-end="10530" vertical-scroll-proportion="0.6926714">
               <folding />
             </state>
           </provider>
@@ -442,7 +432,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -626,7 +616,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/loaddata.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="239" column="92" selection-start="10450" selection-end="10450" vertical-scroll-proportion="0.6217494">
+        <state line="242" column="122" selection-start="10530" selection-end="10530" vertical-scroll-proportion="0.6926714">
           <folding />
         </state>
       </provider>
