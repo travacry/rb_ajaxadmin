@@ -1,3 +1,6 @@
+body{
+	margin: 0px;
+}
 /* begin base conteiner's */
 .main {
 	position: relative;
@@ -21,6 +24,7 @@
 .conteiner .left{
 	position: absolute;
 	width: 170px;
+	height: 600px;
 }
 
 .conteiner .right{
@@ -57,9 +61,10 @@ h1{
 /* end head */
 
 /* begin left */
-		/* info */
+		/* info
+
 .conteiner .left .infobar{
-	border: 1px solid #f1f1f1; 	/* Параметры рамки */
+	border: 1px solid #f1f1f1;
 	border-radius: 0 0 0 8px;
 	moz-border-radius: 0 0 0 8px;
 	webkit-border-radius: 0 0 0 8px;
@@ -73,7 +78,7 @@ h1{
 	width:	60px;
 	height: 20px;
 	float: right;
-    /* margin: 60px 20px 15px 5px; */
+
 	text-align: center;
 	padding-right: 10px;
 	padding-top: 42px;
@@ -85,7 +90,7 @@ h1{
 }
 
 .conteiner .left .infobar .passe-partout {
-    background: #f0f0f0; 		/* Цвет фона  паспарту */
+    background: #f0f0f0;
 	width: 90px; height: 90px;
 	margin: 5px 0px 5px 5px;
 	border-radius: 4px;
@@ -98,6 +103,7 @@ h1{
 	margin-top: 2px;
 	padding: 5px 5px 5px 15px;
 }
+*/
 			/* menu */
 .conteiner .left ul{
 	padding: 20px 15px 15px 5px;
@@ -128,13 +134,12 @@ ul.menu a:hover, ul.menu a:focus {
 ul.menu a:active{
 	font-size: 15px; /* при клике */
 }
+
 /* end left */
 
 /* begin right */
 /*
-.conteiner .right{
-	border: 1px solid #e3eaf1;
-}
+
 
 .conteiner .right .canvas_text{
 	width: 18%;
@@ -204,16 +209,6 @@ ul.menu a:active{
 
 .conteiner .right .canvas_note_veryBid{
 	height: 350px;
-}
-
-/* лоадер */
-
-.conteiner .right .canvas_note_main_loader{
-	height: 800px;
-	margin: 200px;
-}
-
-.conteiner .right .passe-main_loader{
 }
 
 /* для меню */

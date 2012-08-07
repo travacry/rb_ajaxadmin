@@ -38,7 +38,6 @@ $.widget("rb.app_menu", {
     },
 
     loader: function(){
-
         var html = new EJS({url: 'templates/app_menu/app_menu.ejs'}).render({options: this.options, type: "loader"});
         $("#app_menu").append(html);
 
@@ -156,14 +155,24 @@ $.widget("rb.app_menu", {
             var namePage = str.substring(2, str.length);
 
             $(this).bind("click", function(){
+
                 $(".menu").attr("selectpage", namePage);
                 $(".menu").attr("id_Company", id_company);
                 $(".menu").attr("id_Address", id_address);
-                $(".menu").trigger("selectpage");
+	            $(this).trigger("selectpage");
+
+
             });
         });
+
         //меню>
     },
+
+	onBindSelectPage: function(){
+		//$(".menu").bind("selectpage", function(){ console.log("sp"); } );
+		$(this).bind("selectpage", function(){ console.log("sp"); } );
+
+	},
 
 	destroy: function() {
         $(this).removeData('app_menu');
@@ -177,7 +186,7 @@ $.widget("rb.app_menu", {
 	}
 
 });
-
+/*
 var company_data = {};
 var address_data = {};
 
@@ -193,10 +202,16 @@ address_data[1][2] = { id: 2, logo: "js/test_cr_plagins/img/address/logo_resto2.
 address_data[2][1] = { id: 3, logo: "js/test_cr_plagins/img/address/logo_resto3.jpg", favorite: "345", address: "Новый арбат 22 2", subway: "Смоленская", rating: "2", rating_count: "432", count_review: "123" };
 address_data[2][2] = { id: 4, logo: "js/test_cr_plagins/img/address/logo_resto4.jpg", favorite: "34", address: "Новый арбат 22 2", subway: "Смоленская", rating: "5", rating_count: "3331", count_review: "534" };
 address_data[2][3] = { id: 5, logo: "js/test_cr_plagins/img/address/logo_resto5.jpg", favorite: "555", address: "Новый арбат 22 2", subway: "Смоленская", rating: "1", rating_count: "1223", count_review: "22" };
-
+*/
 $(function(){
-    $("#app_menu").app_menu({ company_data: company_data, address_data: address_data });
-    $("#app_menu").app_menu("loader");
-    $("#app_menu").app_menu("destroy");
-    $("#app_menu").app_menu("update");
+	console.log(1);
+
+	//$(".left").app_menu({ company_data: company_data, address_data: address_data });
+	//$(".left").app_menu("loader");
+
+    //$("#app_menu").app_menu("loader");
+    //$("#app_menu").app_menu({ company_data: company_data, address_data: address_data });
+    //$("#app_menu").app_menu("loader");
+    //$("#app_menu").app_menu("destroy");
+    //$("#app_menu").app_menu("update");
 })

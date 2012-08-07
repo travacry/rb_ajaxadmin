@@ -56,7 +56,7 @@
 					if (percent == self.value) clearInterval(self.id_interval);
 					++self.value;
 					$(".progressbar").progressbar({ value: self.value });
-				} ,70)
+				} ,20)
 			} else {
 				$(".progressbar").progressbar({ value: 0 });
 			}
@@ -75,11 +75,11 @@
 })(jQuery);
 
 $(function(){
-	$(".right").loader_jquery();
+
     //$("#loader_jquery").loader_jquery();
 	//$("#loader_jquery").loader_jquery({ type: "cyclic" });
 	//$("#loader_jquery").loader_jquery("setMsg", "hi");
 	//$("#loader_jquery").loader_jquery("update", 10);
-	$(".right").loader_jquery("update", 90);
+	//$(".right").loader_jquery("update", 90);
 
 })
