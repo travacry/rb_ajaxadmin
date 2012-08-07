@@ -44,6 +44,9 @@ $.widget("rb.app_menu", {
     },
 
     update: function(){
+        console.log("update");
+        console.dir(this.options);
+
         var $this = $(this),    data = $this.data('app_menu');
 
         if (!data) {
@@ -52,13 +55,11 @@ $.widget("rb.app_menu", {
                 address_data: this.options.address_data
             });
 
-            console.log(this.options);
             var html = new EJS({url: 'templates/app_menu/app_menu.ejs'}).render({options: this.options, type: "update"});
             this.element.append(html);
         }
 
         var data =  $(this).data('app_menu');
-
         if ((data.company_data != "")&&(data.address_data != "")){
             for (var next in data.company_data){
                 $("#listCompany").append('<option id ="' + data.company_data[next].id + '">' + data.company_data[next].name + '</option>');
@@ -155,13 +156,12 @@ $.widget("rb.app_menu", {
             var namePage = str.substring(2, str.length);
 
             $(this).bind("click", function(){
-
                 $(".menu").attr("selectpage", namePage);
                 $(".menu").attr("id_Company", id_company);
                 $(".menu").attr("id_Address", id_address);
-	            $(this).trigger("selectpage");
-
-
+                var event = jQuery.Event("selectpage");
+                $("body").trigger(event);
+	            //$(this).trigger("selectpage");
             });
         });
 
@@ -169,24 +169,25 @@ $.widget("rb.app_menu", {
     },
 
 	onBindSelectPage: function(){
-		//$(".menu").bind("selectpage", function(){ console.log("sp"); } );
 		$(this).bind("selectpage", function(){ console.log("sp"); } );
-
 	},
 
 	destroy: function() {
         $(this).removeData('app_menu');
-        this.element.next().remove();
-        $(window).unbind("click");
-        $("#app_menu").html("");
+        $(this).unbind("click");
+        $("#app_menu").empty();
 	},
 
 	_setOption: function(key, value){
 
-	}
+	},
+
+    setOptions: function(key, value){
+        this.options[key] = value;
+    }
 
 });
-/*
+
 var company_data = {};
 var address_data = {};
 
@@ -202,16 +203,14 @@ address_data[1][2] = { id: 2, logo: "js/test_cr_plagins/img/address/logo_resto2.
 address_data[2][1] = { id: 3, logo: "js/test_cr_plagins/img/address/logo_resto3.jpg", favorite: "345", address: "Новый арбат 22 2", subway: "Смоленская", rating: "2", rating_count: "432", count_review: "123" };
 address_data[2][2] = { id: 4, logo: "js/test_cr_plagins/img/address/logo_resto4.jpg", favorite: "34", address: "Новый арбат 22 2", subway: "Смоленская", rating: "5", rating_count: "3331", count_review: "534" };
 address_data[2][3] = { id: 5, logo: "js/test_cr_plagins/img/address/logo_resto5.jpg", favorite: "555", address: "Новый арбат 22 2", subway: "Смоленская", rating: "1", rating_count: "1223", count_review: "22" };
-*/
+
 $(function(){
-	console.log(1);
-
-	//$(".left").app_menu({ company_data: company_data, address_data: address_data });
-	//$(".left").app_menu("loader");
-
-    //$("#app_menu").app_menu("loader");
-    //$("#app_menu").app_menu({ company_data: company_data, address_data: address_data });
-    //$("#app_menu").app_menu("loader");
-    //$("#app_menu").app_menu("destroy");
-    //$("#app_menu").app_menu("update");
+    /*
+    $("#app_menu").app_menu();
+    $("#app_menu").app_menu("loader");
+    $("#app_menu").app_menu("destroy");
+    $("#app_menu").app_menu("setOptions", "company_data", company_data);
+    $("#app_menu").app_menu("setOptions", "address_data", address_data);
+    $("#app_menu").app_menu("update");
+    */
 })

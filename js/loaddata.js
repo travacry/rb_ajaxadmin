@@ -1,15 +1,11 @@
 
 $(function(){
-	$(".left").app_menu();
-	$(".left").app_menu("loader");
+    $("#app_menu").app_menu();
+    $("#app_menu").app_menu("loader");
 
 	$(".right").loader_jquery();
 
-	$(".left").app_menu("onBindSelectPage");
-	//$(".menu").bind("selectpage", function(){ console.log("sp"); } );
-	/* Инициализация, загрузка всех данных. */
-
-	var timeout_fixed = 60000;
+    var timeout_fixed = 60000;
 	var timeout_mainmenu_get_ids = 70000;
 	var timeout_mainmenu = 60000;
 	var timeout_dynamic = 60000;
@@ -220,23 +216,30 @@ $(function(){
 			} else {
 				console.log("error : ", name_param, "msg : ", data.error.message);
 			}
-		}
+
+
+        }
 	}
 
 	function initDynamic(){
+
 		var company_data = {};
 		var address_data = {};
 
 
 		for (var next in mainmenu["company.get"].response){
 			var main_lang = mainmenu["company.get"].response[next].language[0];
+
 			var id = mainmenu["company.get"].response[next].id;
 			company_data[id] = {};
 
-			company_data[id].id = mainmenu["company.get"].response[next].id
+			company_data[id].id = mainmenu["company.get"].response[next].id;
 			company_data[id].logo = mainmenu["company.get"].response[next].logo[114];
 			company_data[id].priceLevel = mainmenu["company.get"].response[next].price.level;
 			company_data[id].name = mainmenu["company.get"].response[next].name[main_lang];
+
+            console.log("123123123123");
+            console.dir(mainmenu);
 		}
 
 		for (var next_comp in company_data){
@@ -270,10 +273,33 @@ $(function(){
 			}
 		}
 
+        $("#app_menu").app_menu("destroy");
+        $("#app_menu").app_menu("setOptions", "company_data", company_data);
+        $("#app_menu").app_menu("setOptions", "address_data", address_data);
+        $("#app_menu").app_menu("update");
 
-		$("#app_menu").app_menu({ company_data: company_data, address_data: address_data });
-		$("#app_menu").app_menu("destroy");
-		$("#app_menu").app_menu("update");
-		$(".right").fadeOut(2000);
+        var id_company;
+        var id_address;
+        var page;
+
+        $("body").bind("selectpage", function(){
+            console.log("_________selectpage_______");
+            page =  $(".menu").attr("selectpage");
+            id_company = $(".menu").attr("id_company");
+            id_address = $(".menu").attr("id_address");
+
+            $(".right").info( "setOptions", { mainmenu: mainmenu, fixed: fixed, dynamic: dynamic, id_company: id_company, id_address: id_address });
+        });
+        $(".right").fadeOut(2000, function(){
+            $(".right").info({
+                mainmenu: mainmenu,
+                fixed: fixed,
+                dynamic: dynamic,
+                id_company: id_company,
+                id_address: id_address
+            });
+
+            $(".right").fadeIn(2000);
+        });
 	}
 })

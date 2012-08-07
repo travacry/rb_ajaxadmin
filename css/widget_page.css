@@ -3,80 +3,92 @@
 	margin-top: 12px;
 }
 
-.conteiner .right .widget98p20px{
-	width: 98%;
+.widgetlang{
+    width: 430px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.widget98p20px{
+	width: 428px;
 	height: 20px; 
 	margin-top: 10px;
 }
 
-.conteiner .right .widget80p20px{
-	width: 80%; 
-	height: 20px; 
-	margin-top: 10px;
+.widget98p90p{
+    width: 424px;
+    height: 135px;
+    margin-top: 10px;
 }
 
-.conteiner .right .widget59p20px{
+/* phone begin */
+
+.widget59p20px{
 	width: 59%;
 	height: 20px; 
 	margin-top: 10px;
 }
 
-.conteiner .right .widgetw17px{
-	width: 17%; 
-}
-
-.conteiner .right .del_widgetw17px{
-    width: 17%;
-}
-
-.conteiner .right .widgetw20p22px{
+.widgetw20p22px{
     width: 20%;
     height: 22px;
 }
 
-.conteiner .right .widgetw98px{
-	width: 98%; 
-	margin-top: 10px;
+.widgetw17px{
+	width: 17%;
 }
 
-.conteiner .right .widget200x20px{
+/* phone end */
+
+.widgetw98px{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.widget80p20px{
+    width: 80%;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.del_widgetw17px{
+    width: 17%;
+}
+
+.widget27x20px{
+    width: 35px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.widget200x20px{
 	width: 200px; 
 	height: 20px; 
 	margin-top: 10px;
 	
 }
 
-.conteiner .right .widget200x20px{
+.widget200x20px{
 	width: 200px; 
 	height: 20px; 
 	margin-top: 10px;
 }
 
-.conteiner .right .widget27x20px{
-	width: 4%;
-	height: 20px; 
-	margin-top: 10px;
-}
 
-.conteiner .right .widget27x20pxOffset{
+
+.widget27x20pxOffset{
 	width: 4%;
 	height: 20px; 
 	margin-top: 10px;
 	margin-left: 72px;
 }
 
-.conteiner .right .widget98p90p{
-	width: 98%; 
-	height: 90%; 
-	margin-top: 10px;
-}
-
-.conteiner .right .widget200px{
+.widget200px{
 	width: 200px;
 	height: 100px; 
 }
 
-.conteiner .right .coordinate{
+.coordinate{
 	width: 98%;
 	height: 20px; 
 	margin-top: 10px;
@@ -86,14 +98,14 @@
 	height: 20px;
 }
 
-.conteiner .right .widget300x300px{
+.widget300x300px{
 	width: 90%; 
 	height: 90%;
 	background: #000;
 	margin-top: 10px;
 }
 
-.conteiner .right .widget50p20px{
+.widget50p20px{
 	float: right;
 	width: 50%;
 	height: 20px;
@@ -103,7 +115,7 @@
 
 /* ������� */
 
-.conteiner .right .widget_main_news{
+.widget_main_news{
 	position: relative;
 	background: #808080;
 	width: 99%; height: 95%; border-radius: 5px; margin: 5px;

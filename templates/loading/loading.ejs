@@ -5,13 +5,13 @@
 <div style="width: 100%;" id="">
 <span>
 	<% if (options.type == "cyclic") { %>
-	<div style="margin: 0 auto; width: 350px; text-align: center; font-style: italic; font-size: 16pt">Загрузка:</div>
-	<div style="margin: 0 auto; width: 350px;">
-	    <img src="images\page-loader.gif" alt="Фото" id="foto" class="passe-main_loader" style="width: 100%;">
+	<div style="margin: 0 auto; width: 350px; text-align: center; font-style: italic; font-size: 16pt"></div>
+	<div style="margin: 0 auto; width: 50px;">
+	    <img src="images\page-loader.gif" alt="Фото" id="foto" class="passe-main_loader" style="width: 50px; height: 50px;">
 		<div class="msg_loader" style="margin: 0 auto; width: 350px; text-align: center; font-style: serif; font-size: 10pt"><%= options.msg %></div>
 	</div>
 	<% } else { %>
-	<div class="name_page" style="margin: 0 auto; width: 350px; text-align: center; font-style: italic; font-size: 16pt">Загрузка:</div>
+	<div class="name_page" style="border: 0px; margin: 0 auto; width: 350px; text-align: center; font-style: italic; font-size: 16pt">Загрузка:</div>
 	<div class="canvas_note_main_loader" style="margin: 0 auto; width: 350px;">
 		<div class="progressbar" style="height: 15px;"></div>
 		<div class="msg_loader" style="margin: 0 auto; width: 350px; text-align: center; font-style: serif; font-size: 10pt"><%= options.msg %></div>
