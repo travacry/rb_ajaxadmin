@@ -218,20 +218,6 @@ function Controller(){
 			return img;
 		}
 
-		self.getCoordAddress = function(name_address){
-			//http://maps.googleapis.com/maps/api/geocode/json?address= + + &sensor=true
-			$.ajax({
-				type: "POST",
-				url: "http://maps.googleapis.com/maps/api/geocode/json",
-				data: { address: "Рыбацкий пр.30", sensor: true },
-				dataType: "json",
-				cache: false,
-				success: function(data){
-					console.dir("coordinate", data);
-					debugger
-				}
-			})
-		}
 
 		self.list_address;
 	}

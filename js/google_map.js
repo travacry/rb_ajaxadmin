@@ -17,6 +17,7 @@ function g_map(){
             scaleControl: false,
             scrollwheel: false
         }
+		console.log("self.map = ", self.map);
         self.map = new google.maps.Map(document.getElementById("map_canvas"), self.mapOpts);
     }
 
@@ -34,8 +35,13 @@ function g_map(){
     self.play = function(){
         var radius = 50; //50 m
         self.circle.setRadius(radius);
+	    self.map.getCenter().Xa = 0;
+	    self.map.getCenter().Ya = 0;
+
         self.circle.setCenter(self.map.getCenter());
-        self.map.fitBounds(self.circle.getBounds());
+	    console.log("self.map.getCenter()");
+
+        //self.map.fitBounds(self.circle.getBounds());
         self.map.circleRadius = radius;
     }
 
@@ -68,8 +74,6 @@ function g_map(){
 
 
     google.maps.event.addListener( self.circle, 'click', function(event) {
-        //console.dir(event);
-        //console.log("lat = ", event.latLng.Ya, "lon = ", event.latLng.Za);
         placeMarker(event.latLng);
     });
 
@@ -81,9 +85,9 @@ function g_map(){
             position: location,
             map: self.map
         });
-        //костыль посмотреть апи найти get lat, lon
-        $("#latitude_address").val(location.Ya);
-        $("#longitude_address").val(location.Za);
+
+        $("#latitude_address").val(location.Xa);
+        $("#longitude_address").val(location.Ya);
     }
 
     //установка по координатам сервера + проверка на адрес
@@ -91,7 +95,7 @@ function g_map(){
     self.geocode({address: $("#address_right").val() });
     self.circle.setMap(self.map);
 
-    var svr_locPos = new google.maps.LatLng( $("#current_latitude").val() , $("#current_longitude").val() );
+    var svr_locPos = new google.maps.LatLng($("#current_latitude").val(),$("#current_longitude").val() );
     placeMarker(svr_locPos);
 
     $("#test_api_googlemap_right").bind('click', function() { self.geocode({address: $("#address_right").val() }); self.circle.setMap(self.map); });

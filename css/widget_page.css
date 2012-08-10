@@ -31,7 +31,7 @@
 
 .widgetw20p22px{
     width: 20%;
-    height: 22px;
+    height: 23px;
 }
 
 .widgetw17px{
@@ -113,7 +113,7 @@
 	margin-right: 10px;
 }
 
-/* ������� */
+/**/
 
 .widget_main_news{
 	position: relative;
@@ -129,6 +129,30 @@
     opacity: 1;
 }
 
-.image{
+/**/
+.widget_save{
+	width: 150px;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #dcdcdc;
+}
+
+#save_btn{
+	width: 110px;
+	height: 31px;
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	background: #808080;
+	border-radius: 15px;
+	border: 2px solid #0E0E0E;
+	display: table;
+	vertical-align: middle;
+	text-align:center;
+}
+#save_btn:hover{
+	background:#d3d3d3;
 
 }

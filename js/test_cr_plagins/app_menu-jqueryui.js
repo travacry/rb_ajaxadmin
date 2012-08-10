@@ -44,8 +44,6 @@ $.widget("rb.app_menu", {
     },
 
     update: function(){
-        console.log("update");
-        console.dir(this.options);
 
         var $this = $(this),    data = $this.data('app_menu');
 
@@ -133,6 +131,10 @@ $.widget("rb.app_menu", {
                         $("#address_count_review").html(data.address_data[id_company][next_].count_review);
                         $("#favourite").text(data.address_data[id_company][next_].favorite);
 
+	                    var sp = $(".menu").attr("selectpage");
+	                    if (typeof(sp) != "undefined"){
+	                        $("#m_" + sp).trigger("click");
+	                    }
                         break;
                     }
                 }
@@ -167,10 +169,6 @@ $.widget("rb.app_menu", {
 
         //меню>
     },
-
-	onBindSelectPage: function(){
-		$(this).bind("selectpage", function(){ console.log("sp"); } );
-	},
 
 	destroy: function() {
         $(this).removeData('app_menu');

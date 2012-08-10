@@ -38,7 +38,7 @@
 			$(this).parent().find('.msg_loader').text(msg);
 		},
 		destroy : function() {
-            $(this).removeData('loader_jquery');
+			$(this).empty();
 		},
 		addNextPosition: function(){
 

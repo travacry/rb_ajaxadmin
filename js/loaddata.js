@@ -1,5 +1,18 @@
 
 $(function(){
+
+	disableSelection(document.getElementById("save_btn"));
+
+	function disableSelection(target){
+		if (typeof target.onselectstart!="undefined") // для IE:
+			target.onselectstart=function(){return false}
+		else if (typeof(target.style.MozUserSelect)!="undefined") //для Firefox:
+			target.style.MozUserSelect="none"
+		else // для всех других (типа Оперы):
+			target.onmousedown=function(){return false}
+		target.style.cursor = "default"
+	}
+
     $("#app_menu").app_menu();
     $("#app_menu").app_menu("loader");
 
@@ -17,7 +30,7 @@ $(function(){
 	var timeout_mainmenu_poc_loaderbar = timeout_mainmenu/procent;
 	var timeout_dynamic_poc_loaderbar = timeout_dynamic/procent;
 
-	var fixed = {};
+	fixed = {};
 	function getStaticData(){
 		var ajaxDriver = new ajax_driver();
 
@@ -71,12 +84,10 @@ $(function(){
 	getStaticData();
 
 	function initStatic(){
-		console.log("staticComplite");
-		console.dir(fixed);
 		getMainMenuData();
 	}
 
-	var mainmenu = {};
+	mainmenu = {};
 	function getMainMenuData(){
 
 		var ajaxDriver = new ajax_driver();
@@ -136,24 +147,23 @@ $(function(){
 	}
 
 	function initMainMenuData(){
-		console.log("mainmenu");
-		console.dir(mainmenu);
-		getDynamicData();
+		initDynamic();
 	}
 
 	var dynamic = {};
 	function getDynamicData(){
-		var count_res = 0;
-		var capacity = 1;
 
-		var ajaxDriver = new ajax_driver();
+		//var count_res = 0;
+		//var capacity = 1;
 
-		ajaxDriver.addPack("dynamic");
+		//var ajaxDriver = new ajax_driver();
+
+		//ajaxDriver.addPack("dynamic");
 
 		//var ajaxObj = {    id : "addressRatingGet", pack_id : "dynamic",    data :  {   method: "addressRating.get", address_id: 2 }   } // -
 		//ajaxDriver.addReq(ajaxObj);
-		var ajaxObj = {    id : "categoryGet", pack_id : "dynamic",    data :  {   method: "category.get" }   }
-		ajaxDriver.addReq(ajaxObj);
+		//var ajaxObj = {    id : "categoryGet", pack_id : "dynamic",    data :  {   method: "category.get" }   }
+		//ajaxDriver.addReq(ajaxObj);
 		//var ajaxObj = {    id : "dish_get", pack_id : "dynamic",    data :  {   method: "dish.get" }   }  // -
 		//ajaxDriver.addReq(ajaxObj);
 
@@ -180,7 +190,7 @@ $(function(){
 		 ajaxDriver.addReq(ajaxObj);
 		 */
 
-		ajaxDriver.setCbOKReq("dynamic", "categoryGet", function(data){ saveData(data, "category.get"); });
+		//ajaxDriver.setCbOKReq("dynamic", "categoryGet", function(data){ saveData(data, "category.get"); });
 		//ajaxDriver.setCbOKReq("dynamic", "dishRatingGet", function(data){ saveData(data, "dishRating.get"); });
 		/*
 		 ajaxDriver.setCbOKReq("dynamic", "languageGet", function(data){ dynamic["language.get"] = data;   });
@@ -191,7 +201,7 @@ $(function(){
 		 ajaxDriver.setCbOKReq("dynamic", "unitGet", function(data){ dynamic["unit.get"] = data;   });
 		 */
 
-		ajaxDriver.setCbErrReq("dynamic", "categoryGet", function(xhr, textStatus){ console.log("category"); } );
+		//ajaxDriver.setCbErrReq("dynamic", "categoryGet", function(xhr, textStatus){ console.log("category"); } );
 		//ajaxDriver.setCbErrReq("dynamic", "dishRatingGet", function(xhr, textStatus){ console.log("dishRating"); } );
 		/*
 		 ajaxDriver.setCbErrReq("dynamic", "languageGet", function(xhr, textStatus){ console.log("language"); } );
@@ -202,9 +212,9 @@ $(function(){
 		 ajaxDriver.setCbErrReq("dynamic", "unitGet", function(xhr, textStatus){ console.log("unit"); } );
 		 */
 
-		ajaxDriver.setPackTimeout("dynamic", timeout_dynamic);
-		ajaxDriver.sendPack("dynamic");
-
+		//ajaxDriver.setPackTimeout("dynamic", timeout_dynamic);
+		//ajaxDriver.sendPack("dynamic");
+/*
 		function saveData(data, name_param){
 			$(".right").loader_jquery("update", timeout_dynamic);
 			$(".right").loader_jquery("setMsg", 'загрузка: пакет "дополнительная информация"');
@@ -218,7 +228,7 @@ $(function(){
 			}
 
 
-        }
+        }*/
 	}
 
 	function initDynamic(){
@@ -237,9 +247,6 @@ $(function(){
 			company_data[id].logo = mainmenu["company.get"].response[next].logo[114];
 			company_data[id].priceLevel = mainmenu["company.get"].response[next].price.level;
 			company_data[id].name = mainmenu["company.get"].response[next].name[main_lang];
-
-            console.log("123123123123");
-            console.dir(mainmenu);
 		}
 
 		for (var next_comp in company_data){
@@ -249,8 +256,6 @@ $(function(){
 			for (var next_addr in mainmenu["address.get"].response){
 				var id = mainmenu["address.get"].response[next_addr].id;
 				if (next_comp == mainmenu["address.get"].response[next_addr].company.id){
-					console.log(next_comp);
-
 
 					address_data[next_comp][id] = {};
 
@@ -283,22 +288,29 @@ $(function(){
         var page;
 
         $("body").bind("selectpage", function(){
-            console.log("_________selectpage_______");
+
             page =  $(".menu").attr("selectpage");
             id_company = $(".menu").attr("id_company");
             id_address = $(".menu").attr("id_address");
 
-            $(".right").info( "setOptions", { mainmenu: mainmenu, fixed: fixed, dynamic: dynamic, id_company: id_company, id_address: id_address });
+	        switch (page){
+		        case "info":
+			        $(".right").html("");
+			        $(".right").html('<div class="cont"></div>');
+			        $(".cont").info();
+	                $(".cont").info( "setOptions", { mainmenu: mainmenu, fixed: fixed, id_company: id_company, id_address: id_address });
+				break;
+
+			    case "reviews":
+				    $(".right").html("");
+				    $(".right").html('<div class="cont"></div>');
+			        $(".cont").loader_jquery();
+			    break;
+	        }
         });
         $(".right").fadeOut(2000, function(){
-            $(".right").info({
-                mainmenu: mainmenu,
-                fixed: fixed,
-                dynamic: dynamic,
-                id_company: id_company,
-                id_address: id_address
-            });
 
+	        $("#m_info").click();
             $(".right").fadeIn(2000);
         });
 	}
